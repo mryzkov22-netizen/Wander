@@ -49,7 +49,7 @@
               background-size: cover;
               background-position: center;
               background-repeat: no-repeat;
-              border-bottom: 1px solid rgba(255,255,255,0.22);
+              border-bottom: 2px solid rgba(255,255,255,0.5);
               backdrop-filter: blur(20px);
           }
 
@@ -165,7 +165,7 @@
 
           h2 {
               display: block;
-              font-size: 4.5em;
+              font-size: clamp(2.6rem, 5vw, 4rem);
               margin-block-start: 0.83em;
               margin-block-end: 0.83em;
               margin-inline-start: 0px;
@@ -184,7 +184,7 @@
               max-width: 540px;
               font-size: 1.1rem;
               line-height: 1.7;
-              color: #fff7ea;
+              color: var(--cream);
               font-family: 'Inter', system-ui, sans-serif !important;
           }
           .hero-welcome {
@@ -255,9 +255,13 @@
           line-height: 1;
           color: var(--cream);
         }
-        .title-center h2 { font-size: clamp(2.6rem, 5vw, 4.4rem); }
-        .split-title h2,
-        .newsletter h2 { font-size: clamp(2.8rem, 5vw, 4.5rem); }
+          .title-center h2 {
+              font-size: clamp(2.6rem, 5vw, 4rem);
+          }
+          .split-title h2,
+          .newsletter h2 {
+              font-size: clamp(2.6rem, 5vw, 4rem);
+          }
         .eyebrow {
           margin: 0 0 12px;
           text-transform: uppercase;
@@ -335,13 +339,13 @@
           font-weight: 500;
           line-height: 1;
         }
-        .card p {
-          margin: 10px 0 0;
-          font-size: 14px;
-          line-height: 1.7;
-          color: rgba(213, 204, 183, 0.82);
-          flex: 1;
-        }
+          .card p {
+              margin: 10px 0 0;
+              font-size: 14px;
+              line-height: 1.7;
+              color: var(--cream);
+              flex: 1;
+          }
         .card-bottom {
           display: flex;
           align-items: center;
@@ -416,32 +420,37 @@
           object-position: center 45%;
         }
 
-        .features {
-          background: var(--cream-2);
-          color: #26311a;
-          padding: 56px 0;
-        }
+          .features {
+              background-image: url('Whyus_back.png');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              color: #26311a;
+              padding: 56px 0;
+          }
         .features-title {
           text-align: center;
           margin-bottom: 40px;
         }
-        .features-title h2 {
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-size: clamp(2.6rem, 5vw, 4rem);
-          font-weight: 500;
-          color: #1f2b16;
-          margin: 0;
-        }
+          .features-title h2 {
+              font-family: 'Cormorant Garamond', Georgia, serif;
+              font-size: clamp(2.6rem, 5vw, 4rem);
+              font-weight: 500;
+              color: #1b2411;
+              margin: 0;
+          }
         .feature-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 26px;
         }
-        .feature {
-          display: flex;
-          align-items: flex-start;
-          gap: 14px;
-        }
+          .feature {
+              display: flex;
+              flex-direction: column; /* stack vertically */
+              align-items: center; /* center the icon and text */
+              text-align: center; /* center the text */
+              gap: 12px; /* spacing between icon and text block */
+          }
         .icon {
           width: 44px;
           height: 44px;
@@ -454,19 +463,20 @@
           line-height: 1;
           color: #1f2b16;
         }
-        .feature h4 {
-          margin: 0;
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-size: 1.85rem;
-          font-weight: 500;
-          line-height: 1;
-        }
-        .feature p {
-          margin: 8px 0 0;
-          font-size: 14px;
-          line-height: 1.7;
-          color: #33402a;
-        }
+          .feature h4 {
+              margin: 0;
+              font-family: 'Cormorant Garamond', Georgia, serif;
+              font-size: 1.85rem;
+              font-weight: 500;
+              line-height: 1;
+              color: #1b2411;
+          }
+          .feature p {
+              margin: 8px 0 0;
+              font-size: 14px;
+              line-height: 1.7;
+              color: #1b2411;
+          }
 
         .newsletter {
           position: relative;
@@ -543,12 +553,12 @@
         }
         .footer .logo { display: flex; align-items: center; gap: 12px; }
         .footer .logo .brand-text { font-size: 18px; }
-        .footer p, .footer li {
-          color: rgba(215, 204, 183, 0.8);
-          font-size: 14px;
-          line-height: 1.7;
-          margin: 0;
-        }
+          .footer p, .footer li {
+              color: var(--cream);
+              font-size: 14px;
+              line-height: 1.7;
+              margin: 0;
+          }
         .footer ul {
           list-style: none;
           padding: 0;
@@ -906,7 +916,7 @@
                 { img: 'Parisian Rendezvous.jpg', title: 'Iconic Parisian Rendezvous', desc: 'Eiffel Tower views, Seine river cruises, and world-class art in the timeless City of Light.', price: 'Price from $1,199' },
                   { img: 'Kyoto Temples.jpg', title: 'Timeless Kyoto Temples', desc: "Bamboo groves, golden pavilions, tea ceremonies, and geisha districts in Japan's cultural heart.", price: 'Price from $1,699' },
                 { img: 'Roman Holiday.jpg', title: 'Roman Holiday Splendour', desc: 'Ancient ruins, Vatican masterpieces, and gelato on sun-drenched piazzas in the Eternal City.', price: 'Price from $1,049' },
-                { img: 'New York City Lights.jpg', title: 'New York City Lights', desc: 'Broadway shows, skyline views from Central Park, and the electric buzz of Manhattan's streets.', price: 'Price from $1,349' }
+                { img: 'New York City Lights.jpg', title: 'New York City Lights', desc: "Broadway shows, skyline views from Central Park, and the electric buzz of Manhattan's streets.", price: 'Price from $1,349' }
               ],
               'Mountain peaks': [
                   { img: 'Everest Base .jpg', title: 'Everest Base Camp Trek', desc: "Hike through Sherpa villages and rhododendron forests to the foot of the world's highest peak.", price: 'Price from $1,899' },
