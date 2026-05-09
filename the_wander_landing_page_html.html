@@ -1,0 +1,739 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>The Wander</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+      <style>
+        :root {
+          --bg: #1f2b16;
+          --bg-2: #1b2411;
+          --green: #202b16;
+          --cream: #f3ead8;
+          --cream-2: #efe6d6;
+          --line: rgba(255, 255, 255, 0.18);
+          --line-2: rgba(255, 255, 255, 0.3);
+          --muted: rgba(243, 234, 216, 0.78);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+          margin: 0;
+          font-family: 'Inter', system-ui, sans-serif;
+          background: var(--bg);
+          color: var(--cream);
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+        .container {
+          width: min(1200px, calc(100% - 40px));
+          margin: 0 auto;
+        }
+
+        .serif {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          letter-spacing: 0.01em;
+        }
+
+          .topbar {
+              position: relative;
+              z-index: 20;
+              background-image: url('header.jpg');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              border-bottom: 1px solid rgba(255,255,255,0.22);
+              backdrop-filter: blur(20px);
+          }
+
+          .topbar .container {
+              width: 100%;
+              padding: 0 50px;
+          }
+        .logo-image {
+              width: 140px;
+              height: auto;
+              object-fit: contain;
+              display: block;
+          }
+        .topbar-inner {
+          min-height: 72px;
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          align-items: center;
+          gap: 20px;
+        }
+          .nav {
+              display: flex;
+              align-items: center;
+              gap: 26px;
+              font-size: 14px;
+              color: rgba(255, 255, 255,0.8);
+              white-space: nowrap;
+              font-family: Georgia, serif;
+          }
+
+
+              .nav.left {
+                  justify-content: flex-start;
+                  justify-self: start;
+              }
+
+
+        .nav.right {
+                  justify-content: flex-end;
+                  justify-self: end;
+              }
+        .nav a:hover { color: #fff; }
+
+        .brand {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          justify-self: center;
+        }
+        .logo-placeholder {
+          width: 112px;
+          height: 34px;
+          border: 1px solid rgba(255,255,255,0.35);
+          background: rgba(255,255,255,0.06);
+          border-radius: 2px;
+          display: inline-block;
+          flex-shrink: 0;
+        }
+        .feature-icon-placeholder {
+          width: 56px;
+          height: 40px;
+          border: 1px solid rgba(38,49,26,0.22);
+          background: rgba(255,255,255,0.35);
+          border-radius: 2px;
+          flex-shrink: 0;
+        }
+        .brand-text {
+          line-height: 0.88;
+          text-align: left;
+          font-size: 18px;
+        }
+        .brand-text span { display: block; }
+
+        .hero {
+          position: relative;
+          min-height: 92vh;
+          overflow: hidden;
+          border-bottom: none;
+        }
+          .hero-bg {
+              position: absolute;
+              inset: 0;
+              background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.12), transparent 24%), linear-gradient(180deg, rgba(18, 28, 14, 0.18) 0%, #1b2411 100%), url('main_bg.jpg') center/cover no-repeat;
+          }
+          .hero-content {
+              display: flex;
+              align-items: flex-end;
+              padding: 60px 0 40px;
+          }
+          .hero-copy {
+              max-width: 600px;
+              margin-left: 0;
+          }
+          .hero-main {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 40px;
+              width: 100%;
+          }
+        h1 {
+          margin: 0;
+          font-size: clamp(3.5rem, 9vw, 6.8rem);
+          line-height: 0.94;
+          font-weight: 600;
+          color: #fff7ea;
+        }
+          h2 {
+              display: block;
+              font-size: 4.5em;
+              margin-block-start: 0.83em;
+              margin-block-end: 0.83em;
+              margin-inline-start: 0px;
+              margin-inline-end: 0px;
+              font-weight: bold;
+              unicode-bidi: isolate;
+          }
+          .hero h1,
+          .hero p {
+              font-family: 'Cormorant Garamond', Georgia, serif;
+              font-size: clamp(2.6rem, 6vw, 4.5rem)
+          }
+          .hero-copy p {
+              margin: 22px 0 0;
+              max-width: 540px;
+              font-size: 1rem;
+              line-height: 1.6;
+              color: rgba(243, 234, 216, 0.92);
+          }
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(239, 228, 209, 0.7);
+          padding: 14px 24px;
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 28px;
+          line-height: 1;
+          color: var(--cream);
+          transition: 0.2s ease;
+          background: transparent;
+        }
+        .btn:hover { background: rgba(246, 236, 220, 0.08); }
+        .hero-cta {
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .section {
+          padding: 80px 0;
+          border-bottom: none;
+        }
+          .section.dark {
+              background: #1b2411;
+          }
+          .section.alt {
+              background: #1a2311;
+              border-top: 1px solid rgba(255,255,255,0.28);
+              padding: 0;
+          }
+        .title-center {
+          text-align: center;
+          margin-bottom: 26px;
+        }
+        .title-center h2,
+        .split-title h2,
+        .newsletter h2,
+        .footer h3 {
+          margin: 0;
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-weight: 500;
+          line-height: 1;
+          color: var(--cream);
+        }
+        .title-center h2 { font-size: clamp(2.6rem, 5vw, 4.4rem); }
+        .split-title h2,
+        .newsletter h2 { font-size: clamp(2.8rem, 5vw, 4.5rem); }
+        .eyebrow {
+          margin: 0 0 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.35em;
+          font-size: 11px;
+          color: rgba(217, 205, 179, 0.75);
+        }
+
+        .tabs {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 28px;
+          margin: 0 auto 34px;
+          padding: 0;
+          list-style: none;
+          color: rgba(215, 204, 183, 0.76);
+          font-size: 14px;
+        }
+        .tabs li {
+          padding-bottom: 10px;
+          border-bottom: 1px solid transparent;
+        }
+        .tabs li.active {
+          color: var(--cream);
+          border-bottom-color: rgba(215, 204, 183, 0.9);
+        }
+
+        .cards {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 34px;
+          margin-top: 34px;
+        }
+        .card {
+          border: 1px solid rgba(255,255,255,0.18);
+          background: #1b2313;
+          overflow: hidden;
+          box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+        }
+        .card .image-wrap {
+          height: 280px;
+          background: #f4f1ea;
+        }
+        .card .content {
+          padding: 22px 20px 24px;
+          border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .card h3 {
+          margin: 0;
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 2rem;
+          font-weight: 500;
+          line-height: 1;
+        }
+        .card p {
+          margin: 10px 0 0;
+          font-size: 14px;
+          line-height: 1.7;
+          color: rgba(213, 204, 183, 0.82);
+        }
+
+        .center-btn { display: flex; justify-content: center; margin-top: 34px; }
+        .center-btn .btn { font-size: 24px; padding: 12px 22px; }
+
+        .split {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 48vw;
+          min-height: 520px;
+          align-items: stretch;
+          width: 100%;
+          max-width: 100%;
+        }
+        .split-copy {
+          display: flex;
+          align-items: center;
+          padding: 84px 0;
+        }
+        .split-copy p {
+          max-width: 620px;
+          font-size: 20px;
+          line-height: 1.7;
+          color: rgba(239, 229, 210, 0.9);
+          margin: 0;
+        }
+        .split-image {
+          position: relative;
+          min-height: 100%;
+          overflow: hidden;
+        }
+          .split-image::before {
+              content: '';
+              position: absolute;
+              inset: 0;
+              background: linear-gradient(90deg, #1a2311 0%,  rgba(31,43,22,0) 70%);
+              z-index: 1;
+              pointer-events: none;
+          }
+        .split-image img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 45%;
+        }
+
+        .features {
+          background: var(--cream-2);
+          color: #26311a;
+          padding: 26px 0;
+        }
+        .feature-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 26px;
+        }
+        .feature {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+        }
+        .icon {
+          width: 44px;
+          height: 44px;
+          min-width: 44px;
+          border-radius: 50%;
+          border: 1px solid rgba(38,49,26,0.2);
+          display: grid;
+          place-items: center;
+          font-size: 18px;
+          line-height: 1;
+        }
+        .feature h4 {
+          margin: 0;
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.85rem;
+          font-weight: 500;
+          line-height: 1;
+        }
+        .feature p {
+          margin: 8px 0 0;
+          font-size: 14px;
+          line-height: 1.7;
+          color: #33402a;
+        }
+
+        .newsletter {
+          position: relative;
+          overflow: hidden;
+          background: #1f2b16;
+          padding: 84px 0;
+          border-top: 1px solid rgba(255,255,255,0.28);
+          border-bottom: none;
+        }
+        .newsletter .grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+          align-items: center;
+        }
+        .newsletter p {
+          margin: 18px 0 0;
+          max-width: 480px;
+          font-size: 20px;
+          line-height: 1.7;
+          color: rgba(239, 229, 210, 0.9);
+        }
+        .form-row {
+          display: flex;
+          gap: 10px;
+          margin-top: 28px;
+          max-width: 520px;
+        }
+        .form-row input {
+          flex: 1;
+          height: 50px;
+          border: 1px solid rgba(239,228,209,0.25);
+          background: var(--cream-2);
+          color: #1f2915;
+          padding: 0 16px;
+          outline: none;
+          font: inherit;
+        }
+        .form-row input::placeholder { color: #6b725f; }
+        .form-row button {
+          height: 50px;
+          border: 1px solid rgba(239,228,209,0.45);
+          background: transparent;
+          color: var(--cream);
+          padding: 0 24px;
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 28px;
+          cursor: pointer;
+        }
+        .polaroids {
+          position: relative;
+          height: 360px;
+        }
+        .polaroids img {
+          position: absolute;
+          width: 190px;
+          height: 270px;
+          object-fit: cover;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+          border: 4px solid rgba(255,255,255,0.9);
+        }
+        .p1 { left: 48px; top: 0; transform: rotate(-8deg); }
+        .p2 { left: 184px; top: 56px; transform: rotate(1deg); }
+        .p3 { left: 320px; top: 18px; transform: rotate(7deg); }
+
+        .footer {
+          background: #16210e;
+          padding: 56px 0 22px;
+        }
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+          gap: 30px;
+        }
+        .footer .logo { display: flex; align-items: center; gap: 12px; }
+        .footer .logo .brand-text { font-size: 18px; }
+        .footer p, .footer li {
+          color: rgba(215, 204, 183, 0.8);
+          font-size: 14px;
+          line-height: 1.7;
+          margin: 0;
+        }
+        .footer ul {
+          list-style: none;
+          padding: 0;
+          margin: 14px 0 0;
+        }
+        .footer li { margin-bottom: 8px; }
+        .socials {
+          display: flex;
+          gap: 14px;
+          margin: 14px 0 18px;
+          font-size: 18px;
+        }
+        .copyright {
+          margin-top: 38px;
+          padding-top: 18px;
+          border-top: 1px solid rgba(255,255,255,0.08);
+          text-align: center;
+          color: rgba(215, 204, 183, 0.65);
+          font-size: 13px;
+        }
+
+        @media (max-width: 1100px) {
+          .cards, .feature-grid, .footer-grid, .newsletter .grid, .split {
+            grid-template-columns: 1fr 1fr;
+          }
+          .split { min-height: auto; }
+          .split-copy { padding: 36px 0; }
+          .split-image { min-height: 380px; }
+          .p1 { left: 26px; }
+          .p2 { left: 164px; }
+          .p3 { left: 296px; }
+        }
+
+        @media (max-width: 760px) {
+          .container { width: min(100% - 24px, 1200px); }
+          .topbar-inner {
+            grid-template-columns: 1fr auto;
+            grid-template-areas:
+              "brand brand"
+              "nav nav";
+            padding: 10px 0 14px;
+          }
+          .nav.left, .nav.right { display: none; }
+          .brand { grid-column: 1 / -1; }
+          .hero-content { padding-top: 44px; }
+          .hero-cta { justify-content: flex-start; margin-top: 28px; }
+          .btn { font-size: 22px; }
+          .cards, .feature-grid, .footer-grid, .newsletter .grid, .split { grid-template-columns: 1fr; }
+          .split-image { min-height: 320px; }
+          .newsletter p, .split-copy p { font-size: 18px; }
+          .form-row { flex-direction: column; }
+          .form-row button { width: 100%; }
+          .polaroids { height: 300px; }
+          .polaroids img { width: 150px; height: 220px; }
+          .p1 { left: 0; }
+          .p2 { left: 100px; top: 34px; }
+          .p3 { left: 200px; top: 10px; }
+        }
+      </style>
+    </head>
+    <body>
+      <header class="topbar">
+        <div class="container topbar-inner">
+          <nav class="nav left">
+            <a href="#about">About us</a>
+            <a href="#tours">Pick a tour</a>
+            <a href="#contact">Contact us</a>
+            <a href="#consultation">Consultation</a>
+          </nav>
+
+          <a href="#top" class="brand">
+              <img src="logo_1.png" alt="The Wander Logo" class="logo-image">
+          </a>
+
+          <nav class="nav right">
+            <a href="#search">Search your journey</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="hero-bg"></div>
+          <div class="container hero-content">
+              <div class="hero-main">
+                  <div class="hero-copy">
+                      <h1 class="serif">Wander With Intention.</h1>
+                      <p>A night of inspiration, connection, and a chance to make a real impact</p>
+                  </div>
+
+                  <div class="hero-cta">
+                      <a class="btn" href="#tours">Find Your Trip</a>
+                  </div>
+              </div>
+          </div>
+        </section>
+
+        <section id="tours" class="section dark">
+          <div class="container">
+            <div class="title-center">
+              <h2 class="serif">Where do you want to go?</h2>
+            </div>
+
+            <ul class="tabs">
+              <li class="active">Beach holidays</li>
+              <li>Desert vacations</li>
+              <li>Top-rated destinations</li>
+              <li>Mountain peaks</li>
+            </ul>
+
+            <div class="cards">
+              <article class="card">
+                <div class="image-wrap"><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80" alt="Beach holidays"></div>
+                <div class="content">
+                  <h3 class="serif">Beach holidays</h3>
+                  <p>Curated journeys crafted for memorable experiences.</p>
+                </div>
+              </article>
+              <article class="card">
+                <div class="image-wrap"><img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80" alt="Desert vacations"></div>
+                <div class="content">
+                  <h3 class="serif">Desert vacations</h3>
+                  <p>Curated journeys crafted for memorable experiences.</p>
+                </div>
+              </article>
+              <article class="card">
+                <div class="image-wrap"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80" alt="Top-rated destinations"></div>
+                <div class="content">
+                  <h3 class="serif">Top-rated destinations</h3>
+                  <p>Curated journeys crafted for memorable experiences.</p>
+                </div>
+              </article>
+              <article class="card">
+                <div class="image-wrap"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Mountain peaks"></div>
+                <div class="content">
+                  <h3 class="serif">Mountain peaks</h3>
+                  <p>Curated journeys crafted for memorable experiences.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="center-btn">
+              <a class="btn" href="#">View All Tours</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="section alt">
+          <div class="split">
+            <div class="split-copy">
+              <div class="container">
+              <div>
+                <h2 class="serif">Try Group Wander</h2>
+                <p style="margin-top: 100px;">
+                  Explore the world together through thoughtfully curated group journeys designed for connection,
+                  discovery, and unforgettable shared experiences.
+                </p>
+                <div style="margin-top: 34px;">
+                  <a class="btn" href="#contact">Explore Group Wanders</a>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="split-image">
+              <img src="group.png" alt="Group hiking">
+            </div>
+          </div>
+        </section>
+
+        <section class="features">
+          <div class="container feature-grid">
+            <div class="feature">
+              <div class="feature-icon-placeholder" aria-hidden="true"></div>
+              <div>
+                <h4 class="serif">Expert Local Guides</h4>
+                <p>Knowledgeable guides who bring destinations to life.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-icon-placeholder" aria-hidden="true"></div>
+              <div>
+                <h4 class="serif">Safe &amp; Responsible</h4>
+                <p>Your safety and the planet's well-being are our priorities.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-icon-placeholder" aria-hidden="true"></div>
+              <div>
+                <h4 class="serif">24/7 Support</h4>
+                <p>We’re here for you before, during, and after your trip.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-icon-placeholder" aria-hidden="true"></div>
+              <div>
+                <h4 class="serif">Flexible Booking</h4>
+                <p>Easy changes and cancellations for peace of mind.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="consultation" class="newsletter">
+          <div class="container grid">
+            <div>
+              <p class="eyebrow">Let's Keep in Touch</p>
+              <h2 class="serif">Let’s Keep in Touch</h2>
+              <p>Be the first to know about new tours, special offers, and travel inspiration.</p>
+              <div class="form-row">
+                <input type="email" placeholder="Enter your email" />
+                <button type="button">Subscribe</button>
+              </div>
+            </div>
+
+            <div class="polaroids" aria-hidden="true">
+              <img class="p1" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" alt="Lake view" />
+              <img class="p2" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" alt="Van road trip" />
+              <img class="p3" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80" alt="Desert sunset" />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="contact" class="footer" style="border-top: 1px solid rgba(255,255,255,0.28);">
+        <div class="container">
+          <div class="footer-grid">
+            <div>
+              <div class="logo">
+                <div class="logo-placeholder" aria-hidden="true"></div>
+                <div class="brand-text serif">
+                  <span>THE</span>
+                  <span>WANDER</span>
+                </div>
+              </div>
+              <p style="margin-top: 16px;">Meaningful journeys. Lasting memories.</p>
+            </div>
+
+            <div>
+              <h3 class="serif">Explore</h3>
+              <ul>
+                <li>All Tours</li>
+                <li>Destinations</li>
+                <li>Travel Styles</li>
+                <li>Group Tours</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="serif">Company</h3>
+              <ul>
+                <li>About Us</li>
+                <li>Sustainability</li>
+                <li>Careers</li>
+                <li>Blog</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="serif">Support</h3>
+              <ul>
+                <li>FAQ</li>
+                <li>Travel Insurance</li>
+                <li>Terms &amp; Conditions</li>
+                <li>Privacy Policy</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="serif">Follow Us</h3>
+              <div class="socials" aria-label="Social links">
+                <span>◎</span>
+                <span>◉</span>
+                <span>▶</span>
+              </div>
+              <p>hello@thewander.com</p>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+
+          <div class="copyright">© 2024 The Wander. All rights reserved.</div>
+        </div>
+      </footer>
+    </body>
+    </html>
