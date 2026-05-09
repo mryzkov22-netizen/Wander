@@ -688,32 +688,32 @@
 
             <div class="cards">
               <article class="card">
-                <div class="image-wrap"><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80" alt="Beach holidays"></div>
+                <div class="image-wrap"><img src="phu_quoc.jpg" alt="Tropical Beaches of Phu Quoc"></div>
                 <div class="content">
-                  <h3 class="serif">Beach holidays</h3>
-                  <p>Curated journeys crafted for memorable experiences.</p>
+                  <h3 class="serif">Tropical Beaches of Phu Quoc</h3>
+                  <p>Vietnam's island paradise with powdery white sand, palm-fringed shores, and vibrant coral reefs.</p>
                   <div class="card-bottom">
-                    <span class="card-price">From $1,299</span>
+                    <span class="card-price">From $899</span>
                     <button class="card-book-btn">Book Now</button>
                   </div>
                 </div>
               </article>
               <article class="card">
-                <div class="image-wrap"><img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80" alt="Desert vacations"></div>
+                <div class="image-wrap"><img src="maldives.jpg" alt="Maldives Overwater Bliss"></div>
                 <div class="content">
-                  <h3 class="serif">Desert vacations</h3>
-                  <p>Curated journeys crafted for memorable experiences.</p>
+                  <h3 class="serif">Maldives Overwater Bliss</h3>
+                  <p>Crystal-clear lagoons, luxurious overwater villas, and endless ocean horizons in the Indian Ocean.</p>
                   <div class="card-bottom">
-                    <span class="card-price">From $1,599</span>
+                    <span class="card-price">From $2,499</span>
                     <button class="card-book-btn">Book Now</button>
                   </div>
                 </div>
               </article>
               <article class="card">
-                <div class="image-wrap"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80" alt="Top-rated destinations"></div>
+                <div class="image-wrap"><img src="seychelles.jpg" alt="Seychelles Island Escape"></div>
                 <div class="content">
-                  <h3 class="serif">Top-rated destinations</h3>
-                  <p>Curated journeys crafted for memorable experiences.</p>
+                  <h3 class="serif">Seychelles Island Escape</h3>
+                  <p>Granite boulders, lush jungle, and untouched beaches on the most photogenic islands in the world.</p>
                   <div class="card-bottom">
                     <span class="card-price">From $1,899</span>
                     <button class="card-book-btn">Book Now</button>
@@ -721,12 +721,12 @@
                 </div>
               </article>
               <article class="card">
-                <div class="image-wrap"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Mountain peaks"></div>
+                <div class="image-wrap"><img src="amalfi_coast.jpg" alt="Amalfi Coast Sunshine"></div>
                 <div class="content">
-                  <h3 class="serif">Mountain peaks</h3>
-                  <p>Curated journeys crafted for memorable experiences.</p>
+                  <h3 class="serif">Amalfi Coast Sunshine</h3>
+                  <p>Pastel cliffside villages, turquoise coves, and lemon-scented terraces along Italy's stunning coastline.</p>
                   <div class="card-bottom">
-                    <span class="card-price">From $1,499</span>
+                    <span class="card-price">From $1,299</span>
                     <button class="card-book-btn">Book Now</button>
                   </div>
                 </div>
@@ -812,9 +812,9 @@
             </div>
 
             <div class="polaroids" aria-hidden="true">
-              <img class="p1" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" alt="Lake view" />
-              <img class="p2" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" alt="Van road trip" />
-              <img class="p3" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80" alt="Desert sunset" />
+              <img class="p1" src="Polaroid1.jpg" alt="Lake view" />
+              <img class="p2" src="Polaroid2.jpg" alt="Van road trip" />
+              <img class="p3" src="Polaroid3.jpg" alt="Desert sunset" />
             </div>
           </div>
         </section>
@@ -894,26 +894,30 @@
             // Update card images and titles based on selected tab
             const cards = document.querySelectorAll('.card');
             const cardData = {
-              'Beach holidays': {
-                img: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80',
-                title: 'Beach holidays',
-                price: 'From $1,299'
-              },
-              'Desert vacations': {
-                img: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80',
-                title: 'Desert vacations',
-                price: 'From $1,599'
-              },
-              'Top-rated destinations': {
-                img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80',
-                title: 'Top-rated destinations',
-                price: 'From $1,899'
-              },
-              'Mountain peaks': {
-                img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80',
-                title: 'Mountain peaks',
-                price: 'From $1,499'
-              }
+              'Beach holidays': [
+                { img: 'phu_quoc.jpg', title: 'Tropical Beaches of Phu Quoc', desc: "Vietnam's island paradise with powdery white sand, palm-fringed shores, and vibrant coral reefs.", price: 'From $899' },
+                { img: 'maldives.jpg', title: 'Maldives Overwater Bliss', desc: 'Crystal-clear lagoons, luxurious overwater villas, and endless ocean horizons in the Indian Ocean.', price: 'From $2,499' },
+                { img: 'seychelles.jpg', title: 'Seychelles Island Escape', desc: 'Granite boulders, lush jungle, and untouched beaches on the most photogenic islands in the world.', price: 'From $1,899' },
+                { img: 'amalfi_coast.jpg', title: 'Amalfi Coast Sunshine', desc: "Pastel cliffside villages, turquoise coves, and lemon-scented terraces along Italy's stunning coastline.", price: 'From $1,299' }
+              ],
+              'Desert vacations': [
+                { img: 'sahara.jpg', title: 'Sahara Dunes & Stars', desc: 'Camel treks over golden ergs, nights under a blanket of stars in a traditional Berber camp.', price: 'From $1,099' },
+                { img: 'wadi_rum.jpg', title: 'Wadi Rum Martian Landscapes', desc: "Explore Jordan's red desert valleys, towering rock bridges, and Bedouin hospitality beyond compare.", price: 'From $979' },
+                { img: 'atacama.jpg', title: 'Atacama Desert Adventure', desc: 'The driest non-polar desert on Earth: salt flats, geysers, and lunar-like valleys in northern Chile.', price: 'From $1,549' },
+                { img: 'dubai_desert.jpg', title: 'Dubai Desert Safari', desc: 'Thrilling dune bashing, sunset falconry, and a royal desert banquet in the Arabian sands.', price: 'From $749' }
+              ],
+              'Top-rated destinations': [
+                { img: 'paris.jpg', title: 'Iconic Parisian Rendezvous', desc: 'Eiffel Tower views, Seine river cruises, and world-class art in the timeless City of Light.', price: 'From $1,199' },
+                { img: 'kyoto.jpg', title: 'Timeless Kyoto Temples', desc: "Bamboo groves, golden pavilions, tea ceremonies, and geisha districts in Japan's cultural heart.", price: 'From $1,699' },
+                { img: 'rome.jpg', title: 'Roman Holiday Splendour', desc: 'Ancient ruins, Vatican masterpieces, and gelato on sun-drenched piazzas in the Eternal City.', price: 'From $1,049' },
+                { img: 'new_york.jpg', title: 'New York City Lights', desc: "Broadway shows, skyline views from Central Park, and the electric buzz of Manhattan's streets.", price: 'From $1,349' }
+              ],
+              'Mountain peaks': [
+                { img: 'everest.jpg', title: 'Everest Base Camp Trek', desc: 'Hike through Sherpa villages and rhododendron forests to the foot of the world's highest peak.', price: 'From $1,899' },
+                { img: 'swiss_alps.jpg', title: 'Swiss Alps Panorama', desc: 'Jungfrau railways, flower-filled meadows, and views of the Eiger, Mönch, and Jungfrau trio.', price: 'From $1,499' },
+                { img: 'patagonia.jpg', title: 'Patagonian Peaks Expedition', desc: 'Torres del Paine granite spires, ice fields, and untamed wilderness at the end of the world.', price: 'From $2,199' },
+                { img: 'canadian_rockies.jpg', title: 'Canadian Rockies Explorer', desc: 'Turquoise lakes, towering waterfalls, and the Icefields Parkway through Banff and Jasper.', price: 'From $1,599' }
+              ]
             };
             
             const data = cardData[category];
@@ -921,12 +925,14 @@
               cards.forEach((card, index) => {
                 const img = card.querySelector('.image-wrap img');
                 const title = card.querySelector('h3');
+                const desc = card.querySelector('p');
                 const price = card.querySelector('.card-price');
                 
-                img.src = data.img;
-                img.alt = data.title;
-                title.textContent = data.title;
-                price.textContent = data.price;
+                img.src = data[index].img;
+                img.alt = data[index].title;
+                title.textContent = data[index].title;
+                desc.textContent = data[index].desc;
+                price.textContent = data[index].price;
               });
             }
           });
