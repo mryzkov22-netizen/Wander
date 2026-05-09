@@ -136,18 +136,19 @@
           }
           .hero-content {
               display: flex;
-              align-items: flex-end;
-              padding: 60px 0 40px;
+              align-items: center;
+              padding: 120px 0 80px;
+              min-height: 92vh;
           }
           .hero-copy {
-              max-width: 600px;
+              max-width: 700px;
               margin-left: 0;
           }
           .hero-main {
               display: flex;
               align-items: center;
               justify-content: space-between;
-              gap: 40px;
+              gap: 60px;
               width: 100%;
           }
         h1 {
@@ -178,6 +179,7 @@
               font-size: 1.1rem;
               line-height: 1.7;
               color: rgba(243, 234, 216, 0.92);
+              font-family: 'Inter', system-ui, sans-serif !important;
           }
           .hero-welcome {
             display: flex;
@@ -271,6 +273,11 @@
         .tabs li {
           padding-bottom: 10px;
           border-bottom: 1px solid transparent;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .tabs li:hover {
+          color: var(--cream);
         }
         .tabs li.active {
           color: var(--cream);
@@ -288,14 +295,31 @@
           background: #1b2313;
           overflow: hidden;
           box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          display: flex;
+          flex-direction: column;
+        }
+        .card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 30px 60px rgba(0,0,0,0.25);
         }
         .card .image-wrap {
           height: 280px;
           background: #f4f1ea;
+          transition: transform 0.3s ease;
+        }
+        .card:hover .image-wrap img {
+          transform: scale(1.05);
+        }
+        .card .image-wrap img {
+          transition: transform 0.3s ease;
         }
         .card .content {
           padding: 22px 20px 24px;
           border-top: 1px solid rgba(255,255,255,0.08);
+          flex: 1;
+          display: flex;
+          flex-direction: column;
         }
         .card h3 {
           margin: 0;
@@ -309,10 +333,16 @@
           font-size: 14px;
           line-height: 1.7;
           color: rgba(213, 204, 183, 0.82);
+          flex: 1;
+        }
+        .card-bottom {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: auto;
+          padding-top: 16px;
         }
         .card-price {
-          display: block;
-          margin-top: 14px;
           font-family: 'Cormorant Garamond', Georgia, serif;
           font-size: 1.5rem;
           color: var(--cream);
@@ -320,7 +350,6 @@
         }
         .card-book-btn {
           display: inline-block;
-          margin-top: 14px;
           padding: 10px 20px;
           border: 1px solid rgba(239, 228, 209, 0.6);
           background: transparent;
@@ -556,6 +585,12 @@
           .p1 { left: 26px; }
           .p2 { left: 164px; }
           .p3 { left: 296px; }
+          .hero-main {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 30px;
+          }
+          .hero-cta { justify-content: flex-start; }
         }
 
         @media (max-width: 760px) {
@@ -582,6 +617,11 @@
           .p1 { left: 0; }
           .p2 { left: 100px; top: 34px; }
           .p3 { left: 200px; top: 10px; }
+          .hero-main {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+          }
         }
       </style>
     </head>
@@ -647,8 +687,10 @@
                 <div class="content">
                   <h3 class="serif">Beach holidays</h3>
                   <p>Curated journeys crafted for memorable experiences.</p>
-                  <span class="card-price">From $1,299</span>
-                  <button class="card-book-btn">Book Now</button>
+                  <div class="card-bottom">
+                    <span class="card-price">From $1,299</span>
+                    <button class="card-book-btn">Book Now</button>
+                  </div>
                 </div>
               </article>
               <article class="card">
@@ -656,8 +698,10 @@
                 <div class="content">
                   <h3 class="serif">Desert vacations</h3>
                   <p>Curated journeys crafted for memorable experiences.</p>
-                  <span class="card-price">From $1,599</span>
-                  <button class="card-book-btn">Book Now</button>
+                  <div class="card-bottom">
+                    <span class="card-price">From $1,599</span>
+                    <button class="card-book-btn">Book Now</button>
+                  </div>
                 </div>
               </article>
               <article class="card">
@@ -665,8 +709,10 @@
                 <div class="content">
                   <h3 class="serif">Top-rated destinations</h3>
                   <p>Curated journeys crafted for memorable experiences.</p>
-                  <span class="card-price">From $1,899</span>
-                  <button class="card-book-btn">Book Now</button>
+                  <div class="card-bottom">
+                    <span class="card-price">From $1,899</span>
+                    <button class="card-book-btn">Book Now</button>
+                  </div>
                 </div>
               </article>
               <article class="card">
@@ -674,8 +720,10 @@
                 <div class="content">
                   <h3 class="serif">Mountain peaks</h3>
                   <p>Curated journeys crafted for memorable experiences.</p>
-                  <span class="card-price">From $1,499</span>
-                  <button class="card-book-btn">Book Now</button>
+                  <div class="card-bottom">
+                    <span class="card-price">From $1,499</span>
+                    <button class="card-book-btn">Book Now</button>
+                  </div>
                 </div>
               </article>
             </div>
@@ -690,7 +738,7 @@
           <div class="split">
             <div class="split-copy">
               <div class="container">
-              <div>
+              <div style="margin-top: 0;">
                 <h2 class="serif">Try Group Wander</h2>
                 <p>
                   Explore the world together through thoughtfully curated group journeys designed for connection,
@@ -823,5 +871,62 @@
           <div class="copyright">© 2024 The Wander. All rights reserved.</div>
         </div>
       </footer>
-    </body>
+      <script>
+      // Tab switching functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.tabs li');
+        
+        tabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Get the selected category
+            const category = this.textContent.trim();
+            
+            // Update card images and titles based on selected tab
+            const cards = document.querySelectorAll('.card');
+            const cardData = {
+              'Beach holidays': {
+                img: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80',
+                title: 'Beach holidays',
+                price: 'From $1,299'
+              },
+              'Desert vacations': {
+                img: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80',
+                title: 'Desert vacations',
+                price: 'From $1,599'
+              },
+              'Top-rated destinations': {
+                img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80',
+                title: 'Top-rated destinations',
+                price: 'From $1,899'
+              },
+              'Mountain peaks': {
+                img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80',
+                title: 'Mountain peaks',
+                price: 'From $1,499'
+              }
+            };
+            
+            const data = cardData[category];
+            if (data) {
+              cards.forEach((card, index) => {
+                const img = card.querySelector('.image-wrap img');
+                const title = card.querySelector('h3');
+                const price = card.querySelector('.card-price');
+                
+                img.src = data.img;
+                img.alt = data.title;
+                title.textContent = data.title;
+                price.textContent = data.price;
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
     </html>
