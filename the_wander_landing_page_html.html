@@ -132,7 +132,8 @@
           .hero-bg {
               position: absolute;
               inset: 0;
-              background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.12), transparent 24%), linear-gradient(180deg, rgba(18, 28, 14, 0.18) 0%, #1b2411 100%), url('main_bg.jpg') center/cover no-repeat;
+              z-index: -2;
+              background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.12), transparent 24%), linear-gradient(180deg, rgba(18, 28, 14, 0) 0%,rgba(18, 28, 14, 0.5) 50%, #1b2411 100%), url('main_bg.jpg') center/cover no-repeat;
           }
           .hero-content {
               display: flex;
@@ -156,11 +157,12 @@
           }
         h1 {
           margin: 0;
-          font-size: clamp(3.5rem, 9vw, 6.8rem);
+          font-size: clamp(3.5rem, 9vw, 4rem);
           line-height: 0.94;
           font-weight: 600;
           color: #fff7ea;
         }
+
           h2 {
               display: block;
               font-size: 4.5em;
@@ -178,11 +180,11 @@
               font-family: 'Inter', system-ui, sans-serif !important;
           }
           .hero-copy p {
-              margin: 22px 0 0;
+              margin: 22px 80px 0;
               max-width: 540px;
               font-size: 1.1rem;
               line-height: 1.7;
-              color: rgba(243, 234, 216, 0.92);
+              color: #fff7ea;
               font-family: 'Inter', system-ui, sans-serif !important;
           }
           .hero-welcome {
@@ -656,14 +658,9 @@
           <div class="container hero-content">
               <div class="hero-main">
                   <div class="hero-copy">
-                      <div class="hero-welcome">
-                          <div class="hero-welcome-icon">
-                              <i class="fas fa-compass"></i>
-                          </div>
-                          <span class="hero-welcome-text">Welcome to The Wander</span>
-                      </div>
-                      <h1 class="serif">Wander With Intention.</h1>
-                      <p>Discover transformative journeys that connect you with nature, culture, and like-minded travelers. Every trip is thoughtfully curated to create lasting memories and meaningful experiences.</p>
+            
+                      <h1 class="serif">UNVEIL YOUR JOURNEY BEYOD THE SHORELINE</h1>
+                      <p>Expertly curated escapes to the world's most breathtaking, untouched destinations. Begin your unforgettable adventure.</p>
                   </div>
 
                   <div class="hero-cta">
@@ -802,7 +799,6 @@
         <section id="consultation" class="newsletter">
           <div class="container grid">
             <div>
-              <p class="eyebrow">Let's Keep in Touch</p>
               <h2 class="serif">Let’s Keep in Touch</h2>
               <p>Be the first to know about new tours, special offers, and travel inspiration.</p>
               <div class="form-row">
