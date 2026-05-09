@@ -688,7 +688,7 @@
                 <div class="image-wrap"><img src="Phu Quoc.jpg" alt="Tropical Beaches of Phu Quoc"></div>
                 <div class="content">
                   <h3 class="serif">Tropical Beaches of Phu Quoc</h3>
-                  <p>Vietnam's island paradise with powdery white sand, palm-fringed shores, and vibrant coral reefs.</p>
+                  <p class="card-desc">Vietnam's island paradise with powdery white sand, palm-fringed shores, and vibrant coral reefs.</p>
                   <div class="card-bottom">
                     <span class="card-price">Price from $899</span>
                     <button class="card-book-btn">Book Now</button>
@@ -699,7 +699,7 @@
                 <div class="image-wrap"><img src="Maldives.jpg" alt="Maldives Overwater Bliss"></div>
                 <div class="content">
                   <h3 class="serif">Maldives Overwater Bliss</h3>
-                  <p>Crystal-clear lagoons, luxurious overwater villas, and endless ocean horizons in the Indian Ocean.</p>
+                  <p class="card-desc">Crystal-clear lagoons, luxurious overwater villas, and endless ocean horizons in the Indian Ocean.</p>
                   <div class="card-bottom">
                     <span class="card-price">Price from $2,499</span>
                     <button class="card-book-btn">Book Now</button>
@@ -710,7 +710,7 @@
                 <div class="image-wrap"><img src="Seychelles.jpg" alt="Seychelles Island Escape"></div>
                 <div class="content">
                   <h3 class="serif">Seychelles Island Escape</h3>
-                  <p>Granite boulders, lush jungle, and untouched beaches on the most photogenic islands in the world.</p>
+                  <p class="card-desc">Granite boulders, lush jungle, and untouched beaches on the most photogenic islands in the world.</p>
                   <div class="card-bottom">
                     <span class="card-price">Price from $1,899</span>
                     <button class="card-book-btn">Book Now</button>
@@ -721,7 +721,7 @@
                 <div class="image-wrap"><img src="Amalfi.jpg" alt="Amalfi Coast Sunshine"></div>
                 <div class="content">
                   <h3 class="serif">Amalfi Coast Sunshine</h3>
-                  <p>Pastel cliffside villages, turquoise coves, and lemon-scented terraces along Italy's stunning coastline.</p>
+                  <p class="card-desc">Pastel cliffside villages, turquoise coves, and lemon-scented terraces along Italy's stunning coastline.</p>
                   <div class="card-bottom">
                     <span class="card-price">Price from $1,299</span>
                     <button class="card-book-btn">Book Now</button>
@@ -922,7 +922,7 @@
                 const img = card.querySelector('.image-wrap img');
                 const title = card.querySelector('h3');
                 const price = card.querySelector('.card-price');
-                const desc = card.querySelector('p');
+                const desc = card.querySelector('.card-desc');
                 
                 img.src = data[index].img;
                 img.alt = data[index].title;
