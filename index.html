@@ -1,949 +1,1681 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>The Wander</title>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-      <style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Wander</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
         :root {
-          --bg: #1f2b16;
-          --bg-2: #1b2411;
-          --green: #202b16;
-          --cream: #f3ead8;
-          --cream-2: #efe6d6;
-          --line: rgba(255, 255, 255, 0.18);
-          --line-2: rgba(255, 255, 255, 0.3);
-          --muted: rgba(243, 234, 216, 0.78);
+            --bg: #12170f;
+            --bg2: #1b2411;
+            --panel: rgba(14, 18, 12, .56);
+            --panel-2: rgba(18, 24, 16, .76);
+            --line: rgba(255,255,255,.28);
+            --line-2: rgba(255,255,255,.14);
+            --cream: #f4ead8;
+            --muted: rgba(244,234,216,.72);
+            --soft: rgba(244,234,216,.12);
+            --shadow: 0 24px 60px rgba(0,0,0,.35);
         }
 
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-          margin: 0;
-          font-family: 'Inter', system-ui, sans-serif;
-          background: var(--bg);
-          color: var(--cream);
+            margin: 0;
+            font-family: Inter, system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--cream);
+            overflow-x: hidden;
         }
-        a { color: inherit; text-decoration: none; transition: color 0.3s ease; }
-        img { display: block; width: 100%; height: 100%; object-fit: cover; }
-        button { transition: all 0.3s ease; }
 
-        .container {
-          width: min(1200px, calc(100% - 40px));
-          margin: 0 auto;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input, select {
+            font: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
         }
 
         .serif {
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          letter-spacing: 0.01em;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            letter-spacing: .01em;
         }
 
-          .topbar {
-              position: relative;
-              z-index: 20;
-              background-image: url('header.jpg');
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;
-              border-bottom: 2px solid rgba(255,255,255,0.5);
-              backdrop-filter: blur(20px);
-          }
+        .container {
+            width: min(1240px, calc(100% - 32px));
+            margin: 0 auto;
+        }
 
-          .topbar .container {
-              width: 100%;
-              padding: 0 50px;
-          }
-        .logo-image {
-              width: 140px;
-              height: auto;
-              object-fit: contain;
-              display: block;
-          }
+        /* HEADER */
+        .topbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 40;
+            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,.5) 100%, );
+            border-bottom: 1px solid rgba(255,255,255,.18);
+            backdrop-filter: blur(8px);
+        }
+
         .topbar-inner {
-          min-height: 72px;
-          display: grid;
-          grid-template-columns: 1fr auto 1fr;
-          align-items: center;
-          gap: 20px;
-        }
-          .nav {
-              display: flex;
-              align-items: center;
-              gap: 26px;
-              font-size: 14px;
-              color: rgba(255, 255, 255,0.8);
-              white-space: nowrap;
-              font-family: Georgia, serif;
-          }
-
-
-              .nav.left {
-                  justify-content: flex-start;
-                  justify-self: start;
-              }
-
-
-        .nav.right {
-                  justify-content: flex-end;
-                  justify-self: end;
-              }
-        .nav a:hover { color: #fff; }
-
-        .brand {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          justify-self: center;
-        }
-        .logo-placeholder {
-          width: 112px;
-          height: 34px;
-          border: 1px solid rgba(255,255,255,0.35);
-          background: rgba(255,255,255,0.06);
-          border-radius: 2px;
-          display: inline-block;
-          flex-shrink: 0;
-        }
-        .feature-icon-placeholder {
-          width: 56px;
-          height: 40px;
-          border: 1px solid rgba(38,49,26,0.22);
-          background: rgba(255,255,255,0.35);
-          border-radius: 2px;
-          flex-shrink: 0;
-        }
-        .brand-text {
-          line-height: 0.88;
-          text-align: left;
-          font-size: 18px;
-        }
-        .brand-text span { display: block; }
-
-        .hero {
-          position: relative;
-          min-height: 92vh;
-          overflow: hidden;
-          border-bottom: none;
-        }
-          .hero-bg {
-              position: absolute;
-              inset: 0;
-              z-index: -2;
-              background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.12), transparent 24%), linear-gradient(180deg, rgba(18, 28, 14, 0) 0%,rgba(18, 28, 14, 0.5) 50%, #1b2411 100%), url('main_bg.jpg') center/cover no-repeat;
-          }
-          .hero-content {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              padding: 120px 0 80px;
-              min-height: 92vh;
-          }
-          .hero-copy {
-              max-width: 700px;
-              margin-left: 0;
-              text-align: center;
-          }
-          .hero-main {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              gap: 40px;
-              width: 100%;
-          }
-        h1 {
-          margin: 0;
-          font-size: clamp(3.5rem, 9vw, 4rem);
-          line-height: 0.94;
-          font-weight: 600;
-          color: #fff7ea;
+            min-height: 60px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 18px;
+            padding: 0 6px;
         }
 
-          h2 {
-              display: block;
-              font-size: clamp(2.6rem, 5vw, 4rem);
-              margin-block-start: 0.83em;
-              margin-block-end: 0.83em;
-              margin-inline-start: 0px;
-              margin-inline-end: 0px;
-              font-weight: bold;
-              unicode-bidi: isolate;
-          }
-          .hero h1 {
-              font-family: 'Cormorant Garamond', Georgia, serif;
-          }
-          .hero p {
-              font-family: 'Inter', system-ui, sans-serif !important;
-          }
-          .hero-copy p {
-              margin: 22px 80px 0;
-              max-width: 540px;
-              font-size: 1.1rem;
-              line-height: 1.7;
-              color: var(--cream);
-              font-family: 'Inter', system-ui, sans-serif !important;
-          }
-          .hero-welcome {
+        .nav {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 18px;
-          }
-          .hero-welcome-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(243, 234, 216, 0.1);
-            display: grid;
-            place-items: center;
-            font-size: 20px;
-            color: var(--cream);
-          }
-          .hero-welcome-text {
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-size: 12px;
-            color: rgba(243, 234, 216, 0.7);
-          }
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid rgba(239, 228, 209, 0.7);
-          padding: 14px 24px;
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-size: 28px;
-          line-height: 1;
-          color: var(--cream);
-          transition: 0.2s ease;
-          background: transparent;
-        }
-        .btn:hover { background: rgba(246, 236, 220, 0.08); }
-        .hero-cta {
-          display: flex;
-          justify-content: center;
+            gap: 26px;
+            white-space: nowrap;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            color: rgba(255,255,255,.86);
         }
 
+            .nav a {
+                position: relative;
+                padding: 6px 0;
+                transition: opacity .2s ease, transform .2s ease;
+            }
+
+                .nav a:hover {
+                    opacity: 1;
+                    transform: translateY(-1px);
+                }
+
+            .nav.left {
+                justify-content: flex-start;
+            }
+
+            .nav.right {
+                justify-content: flex-end;
+            }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            justify-self: center;
+            gap: 10px;
+        }
+
+        .logo-image {
+            width: 127px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .search-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+            background: #0e120c;
+        }
+
+        .scene-vignette {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.35) 45%, rgba(6,8,5,.62) 100%), radial-gradient(circle at 50% 42%, rgba(255,255,255,.06), transparent 26%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+            gap: 30px;
+            align-items: center;
+            padding: 120px 0 48px;
+        }
+
+        .finder {
+            width: 100%;
+            max-width: 360px;
+            margin-left: -80px;
+            margin-top: -60px;
+            color: var(--cream);
+        }
+
+        .finder-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: rgba(244,234,216,.85);
+            margin-bottom: 10px;
+            font-family: Georgia, serif;
+        }
+
+        .finder-card {
+            border: 1px solid rgba(255,255,255,.55);
+            background: rgba(12,16,10,.12);
+            backdrop-filter: blur(6px);
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,.22);
+        }
+
+        .field {
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(255,255,255,.12);
+            min-height: 86px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .2s ease;
+            user-select: none;
+        }
+        .train-bg::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 7%; /* adjust how high the gradient goes */
+            background: linear-gradient( to top, #12180f 0%, /* dark at the very bottom */
+            #12180f 50%, /* fades in the middle */
+            transparent 100% /* fully transparent at the top */
+            );
+            pointer-events: none; /* allows clicking through the overlay */
+            z-index: 2; /* place it above the train image */
+        }
+            .field:hover {
+                background: rgba(255,255,255,.03);
+            }
+
+            .field:last-child {
+                border-bottom: 0;
+            }
+
+            .field .label {
+                font-size: 12px;
+                letter-spacing: .04em;
+                color: rgba(244,234,216,.72);
+                margin-bottom: 6px;
+            }
+
+            .field .value {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 14px;
+                font-family: "Cormorant Garamond", Georgia, serif;
+                font-size: clamp(1.7rem, 3vw, 2.05rem);
+                line-height: 1;
+                font-weight: 600;
+                color: #fff7ea;
+            }
+
+                .field .value small {
+                    font-size: 18px;
+                    opacity: .9;
+                    line-height: 1;
+                }
+
+        .finder-actions {
+            margin-top: 22px;
+        }
+
+        .cta-btn {
+            width: 100%;
+            appearance: none;
+            border: 1px solid rgba(255,255,255,.72);
+            background: rgba(0,0,0,.12);
+            color: #fff7ea;
+            padding: 16px 20px;
+            cursor: pointer;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(1.55rem, 2.5vw, 2rem);
+            line-height: 1;
+            box-shadow: var(--shadow);
+            transition: transform .2s ease, background .2s ease, border-color .2s ease;
+        }
+
+            .cta-btn:hover {
+                transform: translateY(-2px);
+                background: rgba(255,255,255,.08);
+                border-color: rgba(255,255,255,.88);
+            }
+
+            .cta-btn:active {
+                transform: translateY(0);
+            }
+
+        .hero-right {
+            position: relative;
+            min-height: 560px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding-right: 18px;
+        }
+
+        .window-view {
+            position: absolute;
+            inset: 8px;
+            border-radius: 24px;
+            overflow: hidden;
+            z-index: -20;
+        }
+
+            .window-view .view-slide {
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+                transform: scale(1.04);
+                transition: opacity 900ms ease, transform 1100ms ease;
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+                .window-view .view-slide.active {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+
+        .train-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            margin-top: 50px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+        }
+
+            .train-bg img {
+                width: 100%;
+                height: 100vh;
+                object-fit: cover;
+
+            }
+
+        /* SCENES UNDER WINDOW */
+        .window-scenes {
+            position: absolute;
+            top: 18%;
+            right: 2%;
+            width: 57vw;
+            height: 57vh;
+            z-index: 0;
+            overflow: hidden;
+            border-radius: 28px;
+        }
+
+        .scene-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.2s ease, transform 1.2s ease;
+            transform: scale(1.05);
+        }
+
+            .scene-slide.active {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        /* CONTENT ABOVE EVERYTHING */
+        .hero-grid {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-top-note {
+            position: absolute;
+            top: 20px;
+            right: 18px;
+            z-index: 2;
+            font-size: 12px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: rgba(244,234,216,.72);
+        }
+
+        /* SECTIONS */
         .section {
-          padding: 80px 0;
-          border-bottom: none;
+            padding: 86px 0;
         }
-          .section.dark {
-              background: #1b2411;
-          }
-          .section.alt {
-              background: #1a2311;
-              border-top: 1px solid rgba(255,255,255,0.28);
-              padding: 0;
-          }
+
+            .section.dark {
+                background: #12180f;
+            }
+
         .title-center {
-          text-align: center;
-          margin-bottom: 26px;
+            text-align: center;
+            margin-bottom: 30px;
         }
-        .title-center h2,
-        .split-title h2,
-        .newsletter h2,
-        .footer h3 {
-          margin: 0;
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-weight: 500;
-          line-height: 1;
-          color: var(--cream);
-        }
-          .title-center h2 {
-              font-size: clamp(2.6rem, 5vw, 4rem);
-          }
-          .split-title h2,
-          .newsletter h2 {
-              font-size: clamp(2.6rem, 5vw, 4rem);
-          }
-        .eyebrow {
-          margin: 0 0 12px;
-          text-transform: uppercase;
-          letter-spacing: 0.35em;
-          font-size: 11px;
-          color: rgba(217, 205, 179, 0.75);
-        }
+
+            .title-center h2 {
+                margin: 0;
+                font-size: clamp(2.4rem, 5vw, 4rem);
+                font-weight: 500;
+                line-height: 1;
+            }
 
         .tabs {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 28px;
-          margin: 0 auto 34px;
-          padding: 0;
-          list-style: none;
-          color: rgba(215, 204, 183, 0.76);
-          font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px 24px;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 34px;
         }
-        .tabs li {
-          padding-bottom: 10px;
-          border-bottom: 1px solid transparent;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-        .tabs li:hover {
-          color: var(--cream);
-        }
-        .tabs li.active {
-          color: var(--cream);
-          border-bottom-color: rgba(215, 204, 183, 0.9);
-        }
+
+            .tabs button {
+                appearance: none;
+                border: 0;
+                background: transparent;
+                color: rgba(244,234,216,.74);
+                font-size: 14px;
+                padding: 0 0 10px;
+                border-bottom: 1px solid transparent;
+                cursor: pointer;
+                transition: color .2s ease, border-color .2s ease, transform .2s ease;
+            }
+
+                .tabs button:hover {
+                    color: #fff7ea;
+                    transform: translateY(-1px);
+                }
+
+                .tabs button.active {
+                    color: #fff7ea;
+                    border-bottom-color: rgba(255,255,255,.9);
+                }
 
         .cards {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 34px;
-          margin-top: 34px;
-        }
-        .card {
-          border: 1px solid rgba(255,255,255,0.18);
-          background: #1b2313;
-          overflow: hidden;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.18);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          display: flex;
-          flex-direction: column;
-        }
-        .card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 30px 60px rgba(0,0,0,0.25);
-        }
-        .card .image-wrap {
-          height: 280px;
-          background: #f4f1ea;
-          transition: transform 0.3s ease;
-        }
-        .card:hover .image-wrap img {
-          transform: scale(1.05);
-        }
-        .card .image-wrap img {
-          transition: transform 0.3s ease;
-        }
-        .card .content {
-          padding: 22px 20px 24px;
-          border-top: 1px solid rgba(255,255,255,0.08);
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-        }
-        .card h3 {
-          margin: 0;
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-size: 2rem;
-          font-weight: 500;
-          line-height: 1;
-        }
-          .card p {
-              margin: 10px 0 0;
-              font-size: 14px;
-              line-height: 1.7;
-              color: var(--cream);
-              flex: 1;
-          }
-        .card-bottom {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-top: auto;
-          padding-top: 16px;
-        }
-        .card-price {
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-size: 1.5rem;
-          color: var(--cream);
-          font-weight: 600;
-        }
-        .card-book-btn {
-          display: inline-block;
-          padding: 10px 20px;
-          border: 1px solid rgba(239, 228, 209, 0.6);
-          background: transparent;
-          color: var(--cream);
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-size: 16px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-        .card-book-btn:hover {
-          background: rgba(246, 236, 220, 0.1);
-          border-color: rgba(239, 228, 209, 0.9);
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 24px;
         }
 
-        .center-btn { display: flex; justify-content: center; margin-top: 34px; }
-        .center-btn .btn { font-size: 24px; padding: 12px 22px; }
+        .card {
+            overflow: hidden;
+            background: #182013;
+            border: 1px solid rgba(255,255,255,.12);
+            box-shadow: 0 20px 50px rgba(0,0,0,.22);
+            display: flex;
+            flex-direction: column;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 30px 60px rgba(0,0,0,.28);
+            }
+
+        .image-wrap {
+            height: 260px;
+            overflow: hidden;
+            background: #eee9de;
+        }
+
+            .image-wrap img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform .35s ease;
+            }
+
+        .card:hover .image-wrap img {
+            transform: scale(1.05);
+        }
+
+        .card .content {
+            padding: 18px 18px 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 2rem;
+            line-height: 1;
+            font-weight: 500;
+        }
+
+        .card p {
+            margin: 10px 0 0;
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--muted);
+            flex: 1;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+        .card-price {
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #fff7ea;
+        }
+
+        .card-book-btn {
+            border: 1px solid rgba(255,255,255,.58);
+            background: transparent;
+            color: var(--cream);
+            padding: 10px 16px;
+            cursor: pointer;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 1.05rem;
+            transition: background .2s ease, transform .2s ease, border-color .2s ease;
+            white-space: nowrap;
+        }
+
+            .card-book-btn:hover {
+                background: rgba(255,255,255,.08);
+                border-color: rgba(255,255,255,.84);
+                transform: translateY(-1px);
+            }
+
+        .center-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 34px;
+        }
+
+        .outline-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,.56);
+            background: transparent;
+            color: var(--cream);
+            padding: 13px 22px;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background .2s ease, transform .2s ease, border-color .2s ease;
+        }
+
+            .outline-btn:hover {
+                background: rgba(255,255,255,.07);
+                transform: translateY(-1px);
+                border-color: rgba(255,255,255,.86);
+            }
 
         .split {
-          display: grid;
-          grid-template-columns: minmax(0, 1fr) 48vw;
-          min-height: 520px;
-          align-items: stretch;
-          width: 100%;
-          max-width: 100%;
+            display: grid;
+            grid-template-columns: minmax(0,1fr) minmax(0, 1.05fr);
+            min-height: 540px;
         }
+
         .split-copy {
-          display: flex;
-          align-items: center;
-          padding: 84px 0;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+            background: #151d11;
         }
-        .split-copy p {
-          max-width: 620px;
-          font-size: 20px;
-          line-height: 1.7;
-          color: rgba(239, 229, 210, 0.9);
-          margin: 0;
-        }
+
+            .split-copy p {
+                max-width: 600px;
+                font-size: 20px;
+                line-height: 1.7;
+                color: rgba(244,234,216,.9);
+                margin: 0;
+            }
+
         .split-image {
-          position: relative;
-          min-height: 100%;
-          overflow: hidden;
-        }
-          .split-image::before {
-              content: '';
-              position: absolute;
-              inset: 0;
-              background: linear-gradient(90deg, #1a2311 0%,  rgba(31,43,22,0) 70%);
-              z-index: 1;
-              pointer-events: none;
-          }
-        .split-image img {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center 45%;
+            position: relative;
+            overflow: hidden;
+            min-height: 100%;
         }
 
-          .features {
-              background-image: url('Whyus_back.png');
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;
-              color: #26311a;
-              padding: 56px 0;
-          }
+            .split-image::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg, #151d11 0%, rgba(21,29,17,0) 38%);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            .split-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .features {
+            background: #eff0ea url('Whyus_back.png') center/cover no-repeat;
+            color: #203019;
+            padding: 58px 0;
+        }
+
         .features-title {
-          text-align: center;
-          margin-bottom: 40px;
+            text-align: center;
+            margin-bottom: 34px;
         }
-          .features-title h2 {
-              font-family: 'Cormorant Garamond', Georgia, serif;
-              font-size: clamp(2.6rem, 5vw, 4rem);
-              font-weight: 500;
-              color: #1b2411;
-              margin: 0;
-          }
+
+            .features-title h2 {
+                margin: 0;
+                font-size: clamp(2.4rem, 5vw, 4rem);
+                font-weight: 500;
+                color: #1b2411;
+            }
+
         .feature-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 26px;
-        }
-          .feature {
-              display: flex;
-              flex-direction: column; /* stack vertically */
-              align-items: center; /* center the icon and text */
-              text-align: center; /* center the text */
-              gap: 12px; /* spacing between icon and text block */
-          }
-        .icon {
-          width: 44px;
-          height: 44px;
-          min-width: 44px;
-          border-radius: 50%;
-          background: rgba(38, 49, 26, 0.1);
-          display: grid;
-          place-items: center;
-          font-size: 18px;
-          line-height: 1;
-          color: #1f2b16;
-        }
-          .feature h4 {
-              margin: 0;
-              font-family: 'Cormorant Garamond', Georgia, serif;
-              font-size: 1.85rem;
-              font-weight: 500;
-              line-height: 1;
-              color: #1b2411;
-          }
-          .feature p {
-              margin: 8px 0 0;
-              font-size: 14px;
-              line-height: 1.7;
-              color: #1b2411;
-          }
-
-        .newsletter {
-          position: relative;
-          overflow: hidden;
-          background: #1f2b16;
-          padding: 84px 0;
-          border-top: 1px solid rgba(255,255,255,0.28);
-          border-bottom: none;
-        }
-        .newsletter .grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 40px;
-          align-items: center;
-        }
-        .newsletter p {
-          margin: 18px 0 0;
-          max-width: 480px;
-          font-size: 20px;
-          line-height: 1.7;
-          color: rgba(239, 229, 210, 0.9);
-        }
-        .form-row {
-          display: flex;
-          gap: 10px;
-          margin-top: 28px;
-          max-width: 520px;
-        }
-        .form-row input {
-          flex: 1;
-          height: 50px;
-          border: 1px solid rgba(239,228,209,0.25);
-          background: var(--cream-2);
-          color: #1f2915;
-          padding: 0 16px;
-          outline: none;
-          font: inherit;
-        }
-        .form-row input::placeholder { color: #6b725f; }
-        .form-row button {
-          height: 50px;
-          border: 1px solid rgba(239,228,209,0.45);
-          background: transparent;
-          color: var(--cream);
-          padding: 0 24px;
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-size: 28px;
-          cursor: pointer;
-        }
-        .polaroids {
-          position: relative;
-          height: 360px;
-        }
-        .polaroids img {
-          position: absolute;
-          width: 190px;
-          height: 270px;
-          object-fit: cover;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-          border: 4px solid rgba(255,255,255,0.9);
-        }
-        .p1 { left: 48px; top: 0; transform: rotate(-8deg); }
-        .p2 { left: 184px; top: 56px; transform: rotate(1deg); }
-        .p3 { left: 320px; top: 18px; transform: rotate(7deg); }
-
-        .footer {
-          background: #16210e;
-          padding: 56px 0 22px;
-        }
-        .footer-grid {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
-          gap: 30px;
-        }
-        .footer .logo { display: flex; align-items: center; gap: 12px; }
-        .footer .logo .brand-text { font-size: 18px; }
-          .footer p, .footer li {
-              color: var(--cream);
-              font-size: 14px;
-              line-height: 1.7;
-              margin: 0;
-          }
-        .footer ul {
-          list-style: none;
-          padding: 0;
-          margin: 14px 0 0;
-        }
-        .footer li { margin-bottom: 8px; }
-        .socials {
-          display: flex;
-          gap: 14px;
-          margin: 14px 0 18px;
-          font-size: 18px;
-        }
-        .socials a {
-          color: rgba(215, 204, 183, 0.8);
-          transition: color 0.3s ease;
-        }
-        .socials a:hover {
-          color: var(--cream);
-        }
-        .footer-logo-img {
-          width: 120px;
-          height: auto;
-          object-fit: contain;
-        }
-        .copyright {
-          margin-top: 38px;
-          padding-top: 18px;
-          border-top: 1px solid rgba(255,255,255,0.08);
-          text-align: center;
-          color: rgba(215, 204, 183, 0.65);
-          font-size: 13px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 22px;
         }
 
-        @media (max-width: 1100px) {
-          .cards, .feature-grid, .footer-grid, .newsletter .grid, .split {
-            grid-template-columns: 1fr 1fr;
-          }
-          .split { min-height: auto; }
-          .split-copy { padding: 36px 0; }
-          .split-image { min-height: 380px; }
-          .p1 { left: 26px; }
-          .p2 { left: 164px; }
-          .p3 { left: 296px; }
-          .hero-main {
+        .feature {
+            display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
-          }
-          .hero-cta { justify-content: center; }
+            text-align: center;
+            gap: 12px;
+        }
+
+        .icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: rgba(38,49,26,.08);
+            color: #1b2411;
+            font-size: 18px;
+        }
+
+        .feature h4 {
+            margin: 0;
+            font-size: 1.75rem;
+            font-weight: 500;
+            line-height: 1;
+            color: #1b2411;
+        }
+
+        .feature p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #1b2411;
+        }
+
+        .newsletter {
+            background: #151d11;
+            border-top: 1px solid rgba(255,255,255,.18);
+            padding: 86px 0;
+        }
+
+            .newsletter .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: center;
+            }
+
+            .newsletter h2 {
+                margin: 0;
+                font-size: clamp(2.4rem, 5vw, 4rem);
+                font-weight: 500;
+            }
+
+            .newsletter p {
+                margin: 16px 0 0;
+                max-width: 500px;
+                font-size: 20px;
+                line-height: 1.7;
+                color: rgba(244,234,216,.9);
+            }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 26px;
+            max-width: 520px;
+        }
+
+            .form-row input {
+                flex: 1;
+                height: 52px;
+                border: 1px solid rgba(255,255,255,.18);
+                background: #efe6d6;
+                color: #1f2915;
+                padding: 0 16px;
+                outline: none;
+            }
+
+                .form-row input::placeholder {
+                    color: #65705d;
+                }
+
+            .form-row button {
+                height: 52px;
+                padding: 0 22px;
+                border: 1px solid rgba(255,255,255,.48);
+                background: transparent;
+                color: var(--cream);
+                cursor: pointer;
+                font-family: "Cormorant Garamond", Georgia, serif;
+                font-size: 1.5rem;
+                white-space: nowrap;
+            }
+
+        .polaroids {
+            position: relative;
+            height: 360px;
+        }
+
+            .polaroids img {
+                position: absolute;
+                width: 190px;
+                height: 270px;
+                object-fit: cover;
+                border: 4px solid rgba(255,255,255,.92);
+                box-shadow: 0 18px 40px rgba(0,0,0,.28);
+            }
+
+        .p1 {
+            left: 30px;
+            top: 0;
+            transform: rotate(-8deg);
+        }
+
+        .p2 {
+            left: 170px;
+            top: 54px;
+            transform: rotate(1deg);
+        }
+
+        .p3 {
+            left: 305px;
+            top: 18px;
+            transform: rotate(7deg);
+        }
+
+        .footer {
+            background: #12180f;
+            padding: 56px 0 22px;
+            border-top: 1px solid rgba(255,255,255,.18);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+            gap: 28px;
+        }
+
+        .footer p, .footer li {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--cream);
+            margin: 0;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 14px 0 0;
+        }
+
+        .footer li {
+            margin-bottom: 8px;
+        }
+
+        .footer h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .footer-logo-img {
+            width: 120px;
+            height: auto;
+        }
+
+        .socials {
+            display: flex;
+            gap: 14px;
+            margin: 14px 0 18px;
+            font-size: 18px;
+        }
+
+            .socials a {
+                color: rgba(244,234,216,.76);
+            }
+
+                .socials a:hover {
+                    color: #fff7ea;
+                }
+
+        .copyright {
+            margin-top: 36px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,.08);
+            text-align: center;
+            color: rgba(244,234,216,.64);
+            font-size: 13px;
+        }
+
+        /* MODAL */
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 80;
+            background: rgba(0,0,0,.56);
+            padding: 20px;
+        }
+
+            .modal.open {
+                display: flex;
+            }
+
+        .modal-card {
+            width: min(760px, 100%);
+            background: #151d11;
+            border: 1px solid rgba(255,255,255,.16);
+            box-shadow: 0 30px 80px rgba(0,0,0,.45);
+            padding: 22px;
+        }
+
+        .modal-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+            .modal-head h3 {
+                margin: 0;
+                font-size: 2rem;
+                font-weight: 500;
+            }
+
+        .modal-close {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.2);
+            background: transparent;
+            color: var(--cream);
+            cursor: pointer;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 12px;
+        }
+
+        .summary-item {
+            border: 1px solid rgba(255,255,255,.14);
+            padding: 14px;
+            background: rgba(255,255,255,.03);
+        }
+
+            .summary-item span {
+                display: block;
+                font-size: 12px;
+                color: rgba(244,234,216,.68);
+                margin-bottom: 8px;
+                text-transform: uppercase;
+                letter-spacing: .08em;
+            }
+
+            .summary-item strong {
+                font-family: "Cormorant Garamond", Georgia, serif;
+                font-size: 1.6rem;
+                font-weight: 600;
+            }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        /* DROPDOWN PANEL */
+        .dropdown-panel {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: min(360px, 100%);
+            margin-top: 10px;
+            background: rgba(16, 20, 14, .96);
+            border: 1px solid rgba(255,255,255,.16);
+            box-shadow: 0 20px 50px rgba(0,0,0,.34);
+            padding: 14px;
+            display: none;
+            z-index: 60;
+        }
+
+            .dropdown-panel.open {
+                display: block;
+            }
+
+            .dropdown-panel .option-grid {
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                gap: 10px;
+            }
+
+        .pill {
+            border: 1px solid rgba(255,255,255,.16);
+            background: rgba(255,255,255,.03);
+            color: var(--cream);
+            padding: 12px 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: background .2s ease, border-color .2s ease;
+            font-size: 14px;
+        }
+
+            .pill:hover,
+            .pill.active {
+                background: rgba(255,255,255,.08);
+                border-color: rgba(255,255,255,.46);
+            }
+
+        .field-wrap {
+            position: relative;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1160px) {
+            .cards,
+            .feature-grid,
+            .footer-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 26px;
+                padding-top: 120px;
+                padding-bottom: 40px;
+            }
+
+            .finder {
+                max-width: 520px;
+                margin: 0 auto;
+            }
+
+            .hero-right {
+                min-height: 470px;
+                padding-right: 0;
+                justify-content: center;
+            }
+
+            .window-shell {
+                width: min(100%, 760px);
+                margin: 0 auto;
+            }
+
+            .split {
+                grid-template-columns: 1fr;
+            }
+
+            .split-image {
+                min-height: 360px;
+            }
+
+            .newsletter .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .polaroids {
+                height: 320px;
+            }
+
+            .p3 {
+                left: 280px;
+            }
         }
 
         @media (max-width: 760px) {
-          .container { width: min(100% - 24px, 1200px); }
-          .topbar-inner {
-            grid-template-columns: 1fr auto;
-            grid-template-areas:
-              "brand brand"
-              "nav nav";
-            padding: 10px 0 14px;
-          }
-          .nav.left, .nav.right { display: none; }
-          .brand { grid-column: 1 / -1; }
-          .hero-content { padding-top: 44px; }
-          .hero-cta { justify-content: flex-start; margin-top: 28px; }
-          .btn { font-size: 22px; }
-          .cards, .feature-grid, .footer-grid, .newsletter .grid, .split { grid-template-columns: 1fr; }
-          .split-image { min-height: 320px; }
-          .newsletter p, .split-copy p { font-size: 18px; }
-          .form-row { flex-direction: column; }
-          .form-row button { width: 100%; }
-          .polaroids { height: 300px; }
-          .polaroids img { width: 150px; height: 220px; }
-          .p1 { left: 0; }
-          .p2 { left: 100px; top: 34px; }
-          .p3 { left: 200px; top: 10px; }
-          .hero-main {
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-          }
+            .container {
+                width: min(100% - 22px, 1240px);
+            }
+
+            .topbar-inner {
+                grid-template-columns: 1fr auto;
+                grid-template-areas:
+                    "brand brand"
+                    "nav nav";
+                padding: 10px 0 14px;
+            }
+
+            .nav.left,
+            .nav.right {
+                display: none;
+            }
+
+            .brand {
+                grid-column: 1/-1;
+            }
+
+            .logo-image {
+                width: 124px;
+            }
+
+            .hero-grid {
+                padding-top: 118px;
+            }
+
+            .finder-card {
+                width: 100%;
+            }
+
+            .field {
+                min-height: 76px;
+                padding: 12px 14px;
+            }
+
+                .field .value {
+                    font-size: 1.6rem;
+                }
+
+            .window-shell {
+                width: min(100%, 430px);
+                aspect-ratio: 1 / 1.08;
+                border-radius: 22px;
+            }
+
+            .window-view {
+                inset: 6px;
+                border-radius: 18px;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cards,
+            .feature-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+                .form-row button {
+                    width: 100%;
+                }
+
+            .polaroids {
+                height: 280px;
+            }
+
+                .polaroids img {
+                    width: 140px;
+                    height: 210px;
+                }
+
+            .p1 {
+                left: 0;
+            }
+
+            .p2 {
+                left: 98px;
+                top: 28px;
+            }
+
+            .p3 {
+                left: 192px;
+                top: 10px;
+            }
+
+            .modal-card {
+                padding: 18px;
+            }
         }
-      </style>
-    </head>
-    <body>
-      <header class="topbar">
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
         <div class="container topbar-inner">
-          <nav class="nav left">
-            <a href="#about">About us</a>
-            <a href="#tours">Pick a tour</a>
-            <a href="#contact">Contact us</a>
-            <a href="#consultation">Consultation</a>
-          </nav>
+            <nav class="nav left" aria-label="Primary">
+                <a href="#about">About us</a>
+                <a href="#tours">Pick a tour</a>
+                <a href="#contact">Contact us</a>
+                <a href="#consultation">Consultation</a>
+            </nav>
 
-          <a href="#top" class="brand">
-              <img src="logo_1.png" alt="The Wander Logo" class="logo-image">
-          </a>
+            <a href="#top" class="brand" aria-label="The Wander home">
+                <img src="logo_1.png" alt="The Wander Logo" class="logo-image">
+            </a>
 
-          <nav class="nav right">
-            <a href="#search">Search your journey</a>
-          </nav>
+            <nav class="nav right" aria-label="Search">
+                <a href="#find-tour" class="search-link"><i class="fa-solid fa-magnifying-glass"></i> Find your journey</a>
+            </nav>
         </div>
-      </header>
+    </header>
 
-      <main id="top">
-        <section class="hero">
-          <div class="hero-bg"></div>
-          <div class="container hero-content">
-              <div class="hero-main">
-                  <div class="hero-copy">
-            
-                      <h1 class="serif">UNVEIL YOUR JOURNEY BEYOD THE SHORELINE</h1>
-                      <p>Expertly curated escapes to the world's most breathtaking, untouched destinations. Begin your unforgettable adventure.</p>
-                  </div>
+    <main id="top">
+        <section class="hero" id="find-tour">
+            <div class="train-bg">
+                <img src="train.png" alt="">
+            </div>
+            <div class="window-scenes">
+                <!-- Initial 4 slides for Turkey (default) -->
+                <div class="scene-slide active" style="background-image: url('turkey-train1.jpg')"></div>
+                <div class="scene-slide" style="background-image: url('turkey-train2.jpg')"></div>
+                <div class="scene-slide" style="background-image: url('turkey-train3.jpg')"></div>
+                <div class="scene-slide" style="background-image: url('turkey-train4.jpg')"></div>
+            </div>
+            <div class="hero-scene" aria-hidden="true">
+                <div class="scene-vignette"></div>
+            </div>
 
-                  <div class="hero-cta">
-                      <a class="btn" href="#tours">Find Your Trip</a>
-                  </div>
-              </div>
-          </div>
+            <div class="container hero-grid">
+                <div class="finder">
+                    <div class="finder-label">
+                        <span>From:</span>
+                        <strong id="fromCityLabel">Minsk, Belarus</strong>
+                        <i class="fa-solid fa-chevron-down" style="font-size:11px; opacity:.8;"></i>
+                    </div>
+
+                    <div class="finder-card">
+                        <div class="field-wrap">
+                            <div class="field js-dropdown" data-key="country">
+                                <div class="label">Country</div>
+                                <div class="value"><span id="countryLabel">Turkey</span> <small><i class="fa-solid fa-chevron-down"></i></small></div>
+                            </div>
+                            <div class="dropdown-panel" id="countryPanel">
+                                <div class="option-grid">
+                                    <button class="pill active" data-value="Turkey">Turkey</button>
+                                    <button class="pill" data-value="Thailand">Thailand</button>
+                                    <button class="pill" data-value="Italy">Italy</button>
+                                    <button class="pill" data-value="Switzerland">Switzerland</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field-wrap">
+                            <div class="field js-dropdown" data-key="dates">
+                                <div class="label">Departure dates</div>
+                                <div class="value"><span id="datesLabel">10 May - 18 May</span> <small><i class="fa-solid fa-chevron-down"></i></small></div>
+                            </div>
+                            <div class="dropdown-panel" id="datesPanel">
+                                <div class="option-grid" style="grid-template-columns:1fr;">
+                                    <button class="pill" data-value="10 May - 18 May">10 May - 18 May</button>
+                                    <button class="pill" data-value="21 Jun - 29 Jun">21 Jun - 29 Jun</button>
+                                    <button class="pill" data-value="05 Jul - 13 Jul">05 Jul - 13 Jul</button>
+                                    <button class="pill" data-value="18 Aug - 26 Aug">18 Aug - 26 Aug</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field-wrap">
+                            <div class="field js-dropdown" data-key="nights">
+                                <div class="label">Nights</div>
+                                <div class="value"><span id="nightsLabel">6 - 12</span> <small><i class="fa-solid fa-chevron-down"></i></small></div>
+                            </div>
+                            <div class="dropdown-panel" id="nightsPanel">
+                                <div class="option-grid" style="grid-template-columns:1fr 1fr;">
+                                    <button class="pill" data-value="3 - 5">3 - 5</button>
+                                    <button class="pill" data-value="6 - 12">6 - 12</button>
+                                    <button class="pill" data-value="13 - 18">13 - 18</button>
+                                    <button class="pill" data-value="19+">19+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field-wrap">
+                            <div class="field js-dropdown" data-key="travelers">
+                                <div class="label">Tourists</div>
+                                <div class="value"><span id="travelersLabel">2 Adults</span> <small><i class="fa-solid fa-chevron-down"></i></small></div>
+                            </div>
+                            <div class="dropdown-panel" id="travelersPanel">
+                                <div class="option-grid" style="grid-template-columns:1fr;">
+                                    <button class="pill" data-value="1 Adult">1 Adult</button>
+                                    <button class="pill" data-value="2 Adults">2 Adults</button>
+                                    <button class="pill" data-value="2 Adults + 1 Child">2 Adults + 1 Child</button>
+                                    <button class="pill" data-value="Family">Family</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="finder-actions">
+                        <button class="cta-btn" id="findTripBtn">Find Your Trip</button>
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <!-- Rest of the sections remain unchanged ... -->
 
         <section id="tours" class="section dark">
-          <div class="container">
-            <div class="title-center">
-              <h2 class="serif">Where do you want to go?</h2>
-            </div>
+            <div class="container">
+                <div class="title-center">
+                    <h2 class="serif">Where do you want to go?</h2>
+                </div>
 
-            <ul class="tabs">
-              <li class="active">Beach holidays</li>
-              <li>Desert vacations</li>
-              <li>Top-rated destinations</li>
-              <li>Mountain peaks</li>
-            </ul>
+                <div class="tabs" role="tablist" aria-label="Tour categories">
+                    <button class="active" data-category="Beach holidays">Beach holidays</button>
+                    <button data-category="Desert vacations">Desert vacations</button>
+                    <button data-category="Top-rated destinations">Top-rated destinations</button>
+                    <button data-category="Mountain peaks">Mountain peaks</button>
+                </div>
 
-            <div class="cards">
-              <article class="card">
-                <div class="image-wrap"><img src="Phu Quoc.jpg" alt="Tropical Beaches of Phu Quoc"></div>
-                <div class="content">
-                  <h3 class="serif">Tropical Beaches of Phu Quoc</h3>
-                  <p class="card-desc">Vietnam's island paradise with powdery white sand, palm-fringed shores, and vibrant coral reefs.</p>
-                  <div class="card-bottom">
-                    <span class="card-price">Price from $899</span>
-                    <button class="card-book-btn">Book Now</button>
-                  </div>
-                </div>
-              </article>
-              <article class="card">
-                <div class="image-wrap"><img src="Maldives.jpg" alt="Maldives Overwater Bliss"></div>
-                <div class="content">
-                  <h3 class="serif">Maldives Overwater Bliss</h3>
-                  <p class="card-desc">Crystal-clear lagoons, luxurious overwater villas, and endless ocean horizons in the Indian Ocean.</p>
-                  <div class="card-bottom">
-                    <span class="card-price">Price from $2,499</span>
-                    <button class="card-book-btn">Book Now</button>
-                  </div>
-                </div>
-              </article>
-              <article class="card">
-                <div class="image-wrap"><img src="Seychelles.jpg" alt="Seychelles Island Escape"></div>
-                <div class="content">
-                  <h3 class="serif">Seychelles Island Escape</h3>
-                  <p class="card-desc">Granite boulders, lush jungle, and untouched beaches on the most photogenic islands in the world.</p>
-                  <div class="card-bottom">
-                    <span class="card-price">Price from $1,899</span>
-                    <button class="card-book-btn">Book Now</button>
-                  </div>
-                </div>
-              </article>
-              <article class="card">
-                <div class="image-wrap"><img src="Amalfi.jpg" alt="Amalfi Coast Sunshine"></div>
-                <div class="content">
-                  <h3 class="serif">Amalfi Coast Sunshine</h3>
-                  <p class="card-desc">Pastel cliffside villages, turquoise coves, and lemon-scented terraces along Italy's stunning coastline.</p>
-                  <div class="card-bottom">
-                    <span class="card-price">Price from $1,299</span>
-                    <button class="card-book-btn">Book Now</button>
-                  </div>
-                </div>
-              </article>
-            </div>
+                <div class="cards" id="tourCards">
+                    <article class="card">
+                        <div class="image-wrap"><img src="Phu Quoc.jpg" alt="Tropical Beaches of Phu Quoc"></div>
+                        <div class="content">
+                            <h3 class="serif">Tropical Beaches of Phu Quoc</h3>
+                            <p class="card-desc">Vietnam's island paradise with powdery white sand, palm-fringed shores, and vibrant coral reefs.</p>
+                            <div class="card-bottom">
+                                <span class="card-price">Price from $899</span>
+                                <button class="card-book-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </article>
 
-            <div class="center-btn">
-              <a class="btn" href="#">View All Tours</a>
+                    <article class="card">
+                        <div class="image-wrap"><img src="Maldives.jpg" alt="Maldives Overwater Bliss"></div>
+                        <div class="content">
+                            <h3 class="serif">Maldives Overwater Bliss</h3>
+                            <p class="card-desc">Crystal-clear lagoons, luxurious overwater villas, and endless ocean horizons in the Indian Ocean.</p>
+                            <div class="card-bottom">
+                                <span class="card-price">Price from $2,499</span>
+                                <button class="card-book-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="image-wrap"><img src="Seychelles.jpg" alt="Seychelles Island Escape"></div>
+                        <div class="content">
+                            <h3 class="serif">Seychelles Island Escape</h3>
+                            <p class="card-desc">Granite boulders, lush jungle, and untouched beaches on the most photogenic islands in the world.</p>
+                            <div class="card-bottom">
+                                <span class="card-price">Price from $1,899</span>
+                                <button class="card-book-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="image-wrap"><img src="Amalfi.jpg" alt="Amalfi Coast Sunshine"></div>
+                        <div class="content">
+                            <h3 class="serif">Amalfi Coast Sunshine</h3>
+                            <p class="card-desc">Pastel cliffside villages, turquoise coves, and lemon-scented terraces along Italy's coastline.</p>
+                            <div class="card-bottom">
+                                <span class="card-price">Price from $1,299</span>
+                                <button class="card-book-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="center-btn">
+                    <button class="outline-btn" id="allToursBtn">View All Tours</button>
+                </div>
             </div>
-          </div>
         </section>
 
-        <section id="about" class="section alt">
-          <div class="split">
-            <div class="split-copy">
-              <div class="container">
-              <div style="margin-top: 0;">
-                <h2 class="serif">Try Group Wander</h2>
-                <p>
-                  Explore the world together through thoughtfully curated group journeys designed for connection,
-                  discovery, and unforgettable shared experiences.
-                </p>
-                <div style="margin-top: 34px;">
-                  <a class="btn" href="#contact">Explore Group Wanders</a>
+        <section id="about" class="section" style="padding:0;">
+            <div class="split">
+                <div class="split-copy">
+                    <div class="container">
+                        <h2 class="serif" style="margin:0 0 18px; font-size:clamp(2.4rem, 5vw, 4rem); font-weight:500;">Try Group Wander</h2>
+                        <p>
+                            Explore the world together through thoughtfully curated group journeys designed for connection,
+                            discovery, and unforgettable shared experiences.
+                        </p>
+                        <div style="margin-top:34px;">
+                            <button class="outline-btn" type="button">Explore Group Wanders</button>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="split-image">
+                    <img src="group.png" alt="Group hiking">
+                </div>
             </div>
-            </div>
-            <div class="split-image">
-              <img src="group.png" alt="Group hiking">
-            </div>
-          </div>
         </section>
 
         <section class="features">
-          <div class="container">
-            <div class="features-title">
-              <h2 class="serif">Why Choose Us</h2>
+            <div class="container">
+                <div class="features-title">
+                    <h2 class="serif">Why Choose Us</h2>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <div class="icon"><i class="fa-solid fa-user-graduate"></i></div>
+                        <div>
+                            <h4 class="serif">Expert Local Guides</h4>
+                            <p>Knowledgeable guides who bring destinations to life.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="icon"><i class="fa-solid fa-shield-heart"></i></div>
+                        <div>
+                            <h4 class="serif">Safe &amp; Responsible</h4>
+                            <p>Your safety and the planet's well-being are our priorities.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="icon"><i class="fa-solid fa-headset"></i></div>
+                        <div>
+                            <h4 class="serif">24/7 Support</h4>
+                            <p>We're here for you before, during, and after your trip.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="icon"><i class="fa-solid fa-calendar-check"></i></div>
+                        <div>
+                            <h4 class="serif">Flexible Booking</h4>
+                            <p>Easy changes and cancellations for peace of mind.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="feature-grid">
-              <div class="feature">
-                <div class="icon"><i class="fas fa-user-graduate"></i></div>
-                <div>
-                  <h4 class="serif">Expert Local Guides</h4>
-                  <p>Knowledgeable guides who bring destinations to life.</p>
-                </div>
-              </div>
-              <div class="feature">
-                <div class="icon"><i class="fas fa-shield-heart"></i></div>
-                <div>
-                  <h4 class="serif">Safe &amp; Responsible</h4>
-                  <p>Your safety and the planet's well-being are our priorities.</p>
-                </div>
-              </div>
-              <div class="feature">
-                <div class="icon"><i class="fas fa-headset"></i></div>
-                <div>
-                  <h4 class="serif">24/7 Support</h4>
-                  <p>We're here for you before, during, and after your trip.</p>
-                </div>
-              </div>
-              <div class="feature">
-                <div class="icon"><i class="fas fa-calendar-check"></i></div>
-                <div>
-                  <h4 class="serif">Flexible Booking</h4>
-                  <p>Easy changes and cancellations for peace of mind.</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
         <section id="consultation" class="newsletter">
-          <div class="container grid">
-            <div>
-              <h2 class="serif">Let’s Keep in Touch</h2>
-              <p>Be the first to know about new tours, special offers, and travel inspiration.</p>
-              <div class="form-row">
-                <input type="email" placeholder="Enter your email" />
-                <button type="button">Subscribe</button>
-              </div>
-            </div>
+            <div class="container grid">
+                <div>
+                    <h2 class="serif">Let’s Keep in Touch</h2>
+                    <p>Be the first to know about new tours, special offers, and travel inspiration.</p>
+                    <div class="form-row">
+                        <input type="email" placeholder="Enter your email" aria-label="Email address" />
+                        <button type="button" id="subscribeBtn">Subscribe</button>
+                    </div>
+                </div>
 
-            <div class="polaroids" aria-hidden="true">
-              <img class="p1" src="Polaroid1.jpg" alt="Travel memory 1" />
-              <img class="p2" src="Polaroid2.jpg" alt="Travel memory 2" />
-              <img class="p3" src="Polaroid3.jpg" alt="Travel memory 3" />
+                <div class="polaroids" aria-hidden="true">
+                    <img class="p1" src="Polaroid1.jpg" alt="">
+                    <img class="p2" src="Polaroid2.jpg" alt="">
+                    <img class="p3" src="Polaroid3.jpg" alt="">
+                </div>
             </div>
-          </div>
         </section>
-      </main>
+    </main>
 
-      <footer id="contact" class="footer" style="border-top: 1px solid rgba(255,255,255,0.28);">
+    <footer id="contact" class="footer">
         <div class="container">
-          <div class="footer-grid">
-            <div>
-              <div class="logo">
-                <img src="logo_1.png" alt="The Wander Logo" class="footer-logo-img">
-              </div>
-              <p style="margin-top: 16px;">Meaningful journeys. Lasting memories.</p>
+            <div class="footer-grid">
+                <div>
+                    <img src="logo_1.png" alt="The Wander Logo" class="footer-logo-img">
+                    <p style="margin-top:16px;">Meaningful journeys. Lasting memories.</p>
+                </div>
+
+                <div>
+                    <h3 class="serif">Explore</h3>
+                    <ul>
+                        <li><a href="#tours">All Tours</a></li>
+                        <li><a href="#tours">Destinations</a></li>
+                        <li><a href="#tours">Travel Styles</a></li>
+                        <li><a href="#tours">Group Tours</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="serif">Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li>Sustainability</li>
+                        <li>Careers</li>
+                        <li>Blog</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="serif">Support</h3>
+                    <ul>
+                        <li>FAQ</li>
+                        <li>Travel Insurance</li>
+                        <li>Terms &amp; Conditions</li>
+                        <li>Privacy Policy</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="serif">Follow Us</h3>
+                    <div class="socials">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <p>hello@thewander.com</p>
+                    <p>+1 (555) 123-4567</p>
+                </div>
             </div>
 
-            <div>
-              <h3 class="serif">Explore</h3>
-              <ul>
-                <li>All Tours</li>
-                <li>Destinations</li>
-                <li>Travel Styles</li>
-                <li>Group Tours</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="serif">Company</h3>
-              <ul>
-                <li>About Us</li>
-                <li>Sustainability</li>
-                <li>Careers</li>
-                <li>Blog</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="serif">Support</h3>
-              <ul>
-                <li>FAQ</li>
-                <li>Travel Insurance</li>
-                <li>Terms &amp; Conditions</li>
-                <li>Privacy Policy</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="serif">Follow Us</h3>
-              <div class="socials" aria-label="Social links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-              </div>
-              <p>hello@thewander.com</p>
-              <p>+1 (555) 123-4567</p>
-            </div>
-          </div>
-
-          <div class="copyright">© 2024 The Wander. All rights reserved.</div>
+            <div class="copyright">© 2024 The Wander. All rights reserved.</div>
         </div>
-      </footer>
-      <script>
-      // Tab switching functionality
-      document.addEventListener('DOMContentLoaded', function() {
-        const tabs = document.querySelectorAll('.tabs li');
-        
-        tabs.forEach(tab => {
-          tab.addEventListener('click', function() {
-            // Remove active class from all tabs
-            tabs.forEach(t => t.classList.remove('active'));
-            // Add active class to clicked tab
-            this.classList.add('active');
-            
-            // Get the selected category
-            const category = this.textContent.trim();
-            
-            // Update card images and titles based on selected tab
-            const cards = document.querySelectorAll('.card');
-            const cardData = {
-              'Beach holidays': [
-                { img: 'Phu Quoc.jpg', title: 'Tropical Beaches of Phu Quoc', desc: "Vietnam's island paradise with powdery white sand, palm-fringed shores, and vibrant coral reefs.", price: 'Price from $899' },
-                { img: 'Maldives.jpg', title: 'Maldives Overwater Bliss', desc: 'Crystal-clear lagoons, luxurious overwater villas, and endless ocean horizons in the Indian Ocean.', price: 'Price from $2,499' },
-                { img: 'Seychelles.jpg', title: 'Seychelles Island Escape', desc: 'Granite boulders, lush jungle, and untouched beaches on the most photogenic islands in the world.', price: 'Price from $1,899' },
-                { img: 'Amalfi.jpg', title: 'Amalfi Coast Sunshine', desc: "Pastel cliffside villages, turquoise coves, and lemon-scented terraces along Italy's stunning coastline.", price: 'Price from $1,299' }
-              ],
-              'Desert vacations': [
-                { img: 'Sahara Dunes.jpg', title: 'Sahara Dunes & Stars', desc: 'Camel treks over golden ergs, nights under a blanket of stars in a traditional Berber camp.', price: 'Price from $1,099' },
-                { img: 'Wadi Rum.jpg', title: 'Wadi Rum Martian Landscapes', desc: "Explore Jordan's red desert valleys, towering rock bridges, and Bedouin hospitality beyond compare.", price: 'Price from $979' },
-                { img: 'Atacama Desert.jpg', title: 'Atacama Desert Adventure', desc: 'The driest non-polar desert on Earth: salt flats, geysers, and lunar-like valleys in northern Chile.', price: 'Price from $1,549' },
-                { img: 'Dubai.jpg', title: 'Dubai Desert Safari', desc: 'Thrilling dune bashing, sunset falconry, and a royal desert banquet in the Arabian sands.', price: 'Price from $749' }
-              ],
-              'Top-rated destinations': [
-                { img: 'Parisian Rendezvous.jpg', title: 'Iconic Parisian Rendezvous', desc: 'Eiffel Tower views, Seine river cruises, and world-class art in the timeless City of Light.', price: 'Price from $1,199' },
-                  { img: 'Kyoto Temples.jpg', title: 'Timeless Kyoto Temples', desc: "Bamboo groves, golden pavilions, tea ceremonies, and geisha districts in Japan's cultural heart.", price: 'Price from $1,699' },
-                { img: 'Roman Holiday.jpg', title: 'Roman Holiday Splendour', desc: 'Ancient ruins, Vatican masterpieces, and gelato on sun-drenched piazzas in the Eternal City.', price: 'Price from $1,049' },
-                { img: 'New York City Lights.jpg', title: 'New York City Lights', desc: "Broadway shows, skyline views from Central Park, and the electric buzz of Manhattan's streets.", price: 'Price from $1,349' }
-              ],
-              'Mountain peaks': [
-                  { img: 'Everest Base .jpg', title: 'Everest Base Camp Trek', desc: "Hike through Sherpa villages and rhododendron forests to the foot of the world's highest peak.", price: 'Price from $1,899' },
-                { img: 'Swiss Alps.jpg', title: 'Swiss Alps Panorama', desc: 'Jungfrau railways, flower-filled meadows, and views of the Eiger, Mönch, and Jungfrau trio.', price: 'Price from $1,499' },
-                { img: 'Patagonian Peaks.jpg', title: 'Patagonian Peaks Expedition', desc: 'Torres del Paine granite spires, ice fields, and untamed wilderness at the end of the world.', price: 'Price from $2,199' },
-                { img: 'CanadianRockies.jpg', title: 'Canadian Rockies Explorer', desc: 'Turquoise lakes, towering waterfalls, and the Icefields Parkway through Banff and Jasper.', price: 'Price from $1,599' }
-              ]
+    </footer>
+
+    <div class="modal" id="tripModal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <div class="modal-head">
+                <h3 class="serif">Your Tour Selection</h3>
+                <button class="modal-close" id="closeModalBtn" aria-label="Close dialog"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="summary-grid">
+                <div class="summary-item"><span>Country</span><strong id="summaryCountry">Turkey</strong></div>
+                <div class="summary-item"><span>Departure</span><strong id="summaryDates">10 May - 18 May</strong></div>
+                <div class="summary-item"><span>Guests</span><strong id="summaryTravelers">2 Adults</strong></div>
+            </div>
+            <div class="summary-item" style="margin-top:12px;">
+                <span>Nights</span><strong id="summaryNights">6 - 12</strong>
+            </div>
+            <div class="modal-actions">
+                <button class="outline-btn" id="editSelectionBtn" type="button">Edit Selection</button>
+                <button class="cta-btn" id="confirmTripBtn" type="button" style="width:auto; padding-inline:24px; font-size:1.7rem;">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ---------- COUNTRY SCENES MAPPING ----------
+            const countryScenes = {
+                'Turkey': [
+                    'turkey-train1.jpg',
+                    'turkey-train2.jpg',
+                    'turkey-train3.jpg',
+                    'turkey-train4.jpg'
+                ],
+                'Thailand': [
+                    'thailand-train1.jpg',
+                    'thailand-train2.jpg',
+                    'thailand-train3.jpg',
+                    'thailand-train4.jpg'
+                ],
+                'Italy': [
+                    'italy-train1.jpg',
+                    'italy-train2.jpg',
+                    'italy-train3.jpg',
+                    'italy-train4.jpg'
+                ],
+                'Switzerland': [
+                    'switherland-train1.jpg',
+                    'switherland-train2.jpg',
+                    'switherland-train3.jpg',
+                    'switherland-train4.jpg'
+                ]
             };
-            
-            const data = cardData[category];
-            if (data) {
-              cards.forEach((card, index) => {
-                const img = card.querySelector('.image-wrap img');
-                const title = card.querySelector('h3');
-                const price = card.querySelector('.card-price');
-                const desc = card.querySelector('.card-desc');
-                
-                img.src = data[index].img;
-                img.alt = data[index].title;
-                title.textContent = data[index].title;
-                price.textContent = data[index].price;
-                desc.textContent = data[index].desc;
-              });
+
+            // ---------- SCENE ROTATION ----------
+            const windowScenes = document.querySelector('.window-scenes');
+            const sceneSlides = Array.from(document.querySelectorAll('.scene-slide'));
+            let activeSceneIndex = 0;
+            let rotationInterval;
+
+            function setScene(index) {
+                sceneSlides.forEach(slide => slide.classList.remove('active'));
+                activeSceneIndex = ((index % sceneSlides.length) + sceneSlides.length) % sceneSlides.length;
+                sceneSlides[activeSceneIndex].classList.add('active');
             }
-          });
+
+            function startRotation() {
+                if (rotationInterval) clearInterval(rotationInterval);
+                rotationInterval = setInterval(() => {
+                    setScene(activeSceneIndex + 1);
+                }, 3000); // change every 3 seconds
+            }
+
+            // Initial rotation start (slides already exist for Turkey)
+            sceneSlides[0].classList.add('active');
+            startRotation();
+
+            // ---------- UPDATE SCENES WHEN COUNTRY CHANGES ----------
+            function updateScenesForCountry(country) {
+                const images = countryScenes[country];
+                if (!images || !windowScenes) return;
+
+                // Clear existing slides
+                windowScenes.innerHTML = '';
+
+                // Create new scene slides
+                images.forEach((img, index) => {
+                    const slide = document.createElement('div');
+                    slide.classList.add('scene-slide');
+                    if (index === 0) slide.classList.add('active'); // first one active
+                    slide.style.backgroundImage = `url('${img}')`;
+                    windowScenes.appendChild(slide);
+                });
+
+                // Update the sceneSlides NodeList
+                // Re-grab the slides after DOM change
+                sceneSlides.length = 0;
+                const newSlides = document.querySelectorAll('.scene-slide');
+                newSlides.forEach(slide => sceneSlides.push(slide));
+
+                // Reset rotation index and restart
+                activeSceneIndex = 0;
+                startRotation();
+            }
+
+            // ---------- DROPDOWN LOGIC ----------
+            const panels = {
+                country: document.getElementById('countryPanel'),
+                dates: document.getElementById('datesPanel'),
+                nights: document.getElementById('nightsPanel'),
+                travelers: document.getElementById('travelersPanel')
+            };
+
+            const labels = {
+                country: document.getElementById('countryLabel'),
+                dates: document.getElementById('datesLabel'),
+                nights: document.getElementById('nightsLabel'),
+                travelers: document.getElementById('travelersLabel')
+            };
+
+            const dropdownFields = document.querySelectorAll('.js-dropdown');
+            const allPills = document.querySelectorAll('.pill');
+
+            function closeAllPanels() {
+                Object.values(panels).forEach(panel => panel.classList.remove('open'));
+            }
+
+            dropdownFields.forEach(field => {
+                field.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const key = field.dataset.key;
+                    const panel = panels[key];
+                    const willOpen = !panel.classList.contains('open');
+                    closeAllPanels();
+                    if (willOpen) panel.classList.add('open');
+                });
+            });
+
+            allPills.forEach(pill => {
+                pill.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const value = pill.dataset.value;
+                    const parentPanel = pill.closest('.dropdown-panel');
+                    const key = Object.entries(panels).find(([, panel]) => panel === parentPanel)?.[0];
+
+                    if (key) {
+                        labels[key].textContent = value;
+                        // If country changed, update scenes
+                        if (key === 'country') {
+                            updateScenesForCountry(value);
+                        }
+                    }
+
+                    parentPanel.querySelectorAll('.pill').forEach(btn => btn.classList.remove('active'));
+                    pill.classList.add('active');
+                    closeAllPanels();
+                });
+            });
+
+            document.addEventListener('click', () => closeAllPanels());
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeAllPanels();
+            });
+
+            // ---------- MODAL ----------
+            const modal = document.getElementById('tripModal');
+            const findTripBtn = document.getElementById('findTripBtn');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const editSelectionBtn = document.getElementById('editSelectionBtn');
+            const confirmTripBtn = document.getElementById('confirmTripBtn');
+
+            const summaryCountry = document.getElementById('summaryCountry');
+            const summaryDates = document.getElementById('summaryDates');
+            const summaryNights = document.getElementById('summaryNights');
+            const summaryTravelers = document.getElementById('summaryTravelers');
+
+            function openModal() {
+                summaryCountry.textContent = labels.country.textContent;
+                summaryDates.textContent = labels.dates.textContent;
+                summaryNights.textContent = labels.nights.textContent;
+                summaryTravelers.textContent = labels.travelers.textContent;
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+            }
+
+            findTripBtn.addEventListener('click', openModal);
+            closeModalBtn.addEventListener('click', closeModal);
+            editSelectionBtn.addEventListener('click', closeModal);
+            confirmTripBtn.addEventListener('click', () => {
+                closeModal();
+                alert(`Searching trips to ${labels.country.textContent} for ${labels.travelers.textContent}.`);
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // ---------- TABS ----------
+            const tabs = document.querySelectorAll('.tabs button');
+            const cards = document.querySelectorAll('.card');
+
+            const cardData = {
+                'Beach holidays': [
+                    { img: 'Phu Quoc.jpg', title: 'Tropical Beaches of Phu Quoc', desc: "Vietnam's island paradise with powdery white sand, palm-fringed shores, and vibrant coral reefs.", price: 'Price from $899' },
+                    { img: 'Maldives.jpg', title: 'Maldives Overwater Bliss', desc: 'Crystal-clear lagoons, luxurious overwater villas, and endless ocean horizons in the Indian Ocean.', price: 'Price from $2,499' },
+                    { img: 'Seychelles.jpg', title: 'Seychelles Island Escape', desc: 'Granite boulders, lush jungle, and untouched beaches on the most photogenic islands in the world.', price: 'Price from $1,899' },
+                    { img: 'Amalfi.jpg', title: 'Amalfi Coast Sunshine', desc: "Pastel cliffside villages, turquoise coves, and lemon-scented terraces along Italy's coastline.", price: 'Price from $1,299' }
+                ],
+                'Desert vacations': [
+                    { img: 'Sahara Dunes.jpg', title: 'Sahara Dunes & Stars', desc: 'Camel treks over golden ergs, nights under a blanket of stars in a traditional Berber camp.', price: 'Price from $1,099' },
+                    { img: 'Wadi Rum.jpg', title: 'Wadi Rum Martian Landscapes', desc: "Explore Jordan's red desert valleys, towering rock bridges, and Bedouin hospitality beyond compare.", price: 'Price from $979' },
+                    { img: 'Atacama Desert.jpg', title: 'Atacama Desert Adventure', desc: 'The driest non-polar desert on Earth: salt flats, geysers, and lunar-like valleys in northern Chile.', price: 'Price from $1,549' },
+                    { img: 'Dubai.jpg', title: 'Dubai Desert Safari', desc: 'Thrilling dune bashing, sunset falconry, and a royal desert banquet in the Arabian sands.', price: 'Price from $749' }
+                ],
+                'Top-rated destinations': [
+                    { img: 'Parisian Rendezvous.jpg', title: 'Iconic Parisian Rendezvous', desc: 'Eiffel Tower views, Seine river cruises, and world-class art in the City of Light.', price: 'Price from $1,199' },
+                    { img: 'Kyoto Temples.jpg', title: 'Timeless Kyoto Temples', desc: "Bamboo groves, golden pavilions, tea ceremonies, and geisha districts in Japan's cultural heart.", price: 'Price from $1,699' },
+                    { img: 'Roman Holiday.jpg', title: 'Roman Holiday Splendour', desc: 'Ancient ruins, Vatican masterpieces, and gelato on sun-drenched piazzas in the Eternal City.', price: 'Price from $1,049' },
+                    { img: 'New York City Lights.jpg', title: 'New York City Lights', desc: "Broadway shows, skyline views from Central Park, and the electric buzz of Manhattan's streets.", price: 'Price from $1,349' }
+                ],
+                'Mountain peaks': [
+                    { img: 'Everest Base .jpg', title: 'Everest Base Camp Trek', desc: "Hike through Sherpa villages and rhododendron forests to the foot of the world's highest peak.", price: 'Price from $1,899' },
+                    { img: 'Swiss Alps.jpg', title: 'Swiss Alps Panorama', desc: 'Jungfrau railways, flower-filled meadows, and views of the Eiger, Mönch, and Jungfrau trio.', price: 'Price from $1,499' },
+                    { img: 'Patagonian Peaks.jpg', title: 'Patagonian Peaks Expedition', desc: 'Torres del Paine granite spires, ice fields, and untamed wilderness at the end of the world.', price: 'Price from $2,199' },
+                    { img: 'CanadianRockies.jpg', title: 'Canadian Rockies Explorer', desc: 'Turquoise lakes, towering waterfalls, and the Icefields Parkway through Banff and Jasper.', price: 'Price from $1,599' }
+                ]
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const data = cardData[tab.dataset.category];
+                    if (!data) return;
+
+                    cards.forEach((card, index) => {
+                        const item = data[index];
+                        const img = card.querySelector('img');
+                        const title = card.querySelector('h3');
+                        const desc = card.querySelector('.card-desc');
+                        const price = card.querySelector('.card-price');
+
+                        img.src = item.img;
+                        img.alt = item.title;
+                        title.textContent = item.title;
+                        desc.textContent = item.desc;
+                        price.textContent = item.price;
+                    });
+                });
+            });
+
+            // Buttons
+            document.getElementById('allToursBtn').addEventListener('click', () => {
+                document.getElementById('tours').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            document.getElementById('subscribeBtn').addEventListener('click', () => {
+                alert('Thanks for subscribing!');
+            });
+
+            document.querySelectorAll('.card-book-btn').forEach(btn => {
+                btn.addEventListener('click', openModal);
+            });
         });
-      });
     </script>
-  </body>
-    </html>
+</body>
+</html>
