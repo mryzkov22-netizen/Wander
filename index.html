@@ -7,7 +7,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
@@ -55,7 +55,7 @@
         }
 
         .serif {
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: 'Libre Baskerville', serif;
             letter-spacing: .01em;
         }
 
@@ -90,7 +90,7 @@
             align-items: center;
             gap: 26px;
             white-space: nowrap;
-            font-family: Georgia, serif;
+            font-family: 'Libre Baskerville', serif;
             font-size: 14px;
             color: rgba(255,255,255,.86);
         }
@@ -174,7 +174,7 @@
             font-size: 15px;
             color: rgba(244,234,216,.85);
             margin-bottom: 10px;
-            font-family: Georgia, serif;
+            font-family: 'Libre Baskerville', serif;
         }
 
         .finder-card {
@@ -182,7 +182,7 @@
             background: rgba(12,16,10,.12);
             backdrop-filter: blur(6px);
             padding: 0;
-            overflow: hidden;
+            overflow: visible; /* changed from hidden to allow dropdown to overflow */
             box-shadow: 0 20px 60px rgba(0,0,0,.22);
         }
 
@@ -197,52 +197,51 @@
             transition: background .2s ease;
             user-select: none;
         }
+
         .train-bg::after {
             content: "";
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 7%; /* adjust how high the gradient goes */
-            background: linear-gradient( to top, #12180f 0%, /* dark at the very bottom */
-            #12180f 50%, /* fades in the middle */
-            transparent 100% /* fully transparent at the top */
-            );
-            pointer-events: none; /* allows clicking through the overlay */
-            z-index: 2; /* place it above the train image */
+            height: 7%;
+            background: linear-gradient( to top, #12180f 0%, #12180f 50%, transparent 100%);
+            pointer-events: none;
+            z-index: 2;
         }
-            .field:hover {
-                background: rgba(255,255,255,.03);
-            }
 
-            .field:last-child {
-                border-bottom: 0;
-            }
+        .field:hover {
+            background: rgba(255,255,255,.03);
+        }
 
-            .field .label {
-                font-size: 12px;
-                letter-spacing: .04em;
-                color: rgba(244,234,216,.72);
-                margin-bottom: 6px;
-            }
+        .field:last-child {
+            border-bottom: 0;
+        }
 
-            .field .value {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 14px;
-                font-family: "Cormorant Garamond", Georgia, serif;
-                font-size: clamp(1.7rem, 3vw, 2.05rem);
+        .field .label {
+            font-size: 12px;
+            letter-spacing: .04em;
+            color: rgba(244,234,216,.72);
+            margin-bottom: 6px;
+        }
+
+        .field .value {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(1.7rem, 3vw, 1.05rem);
+            line-height: 1;
+            font-weight: 200;
+            color: #fff7ea;
+        }
+
+            .field .value small {
+                font-size: 18px;
+                opacity: .9;
                 line-height: 1;
-                font-weight: 600;
-                color: #fff7ea;
             }
-
-                .field .value small {
-                    font-size: 18px;
-                    opacity: .9;
-                    line-height: 1;
-                }
 
         .finder-actions {
             margin-top: 22px;
@@ -256,8 +255,8 @@
             color: #fff7ea;
             padding: 16px 20px;
             cursor: pointer;
-            font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: clamp(1.55rem, 2.5vw, 2rem);
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.7rem, 3vw, 1.05rem);
             line-height: 1;
             box-shadow: var(--shadow);
             transition: transform .2s ease, background .2s ease, border-color .2s ease;
@@ -315,14 +314,12 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-
         }
 
             .train-bg img {
                 width: 100%;
                 height: 100vh;
                 object-fit: cover;
-
             }
 
         /* SCENES UNDER WINDOW */
@@ -469,9 +466,9 @@
 
         .card h3 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 1.7rem;
             line-height: 1;
-            font-weight: 500;
+            font-weight: 10;
         }
 
         .card p {
@@ -493,9 +490,9 @@
         }
 
         .card-price {
-            font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: 1.35rem;
-            font-weight: 600;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.2rem;
+            font-weight: 100;
             color: #fff7ea;
         }
 
@@ -505,7 +502,7 @@
             color: var(--cream);
             padding: 10px 16px;
             cursor: pointer;
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: 'Libre Baskerville', serif;
             font-size: 1.05rem;
             transition: background .2s ease, transform .2s ease, border-color .2s ease;
             white-space: nowrap;
@@ -531,7 +528,7 @@
             background: transparent;
             color: var(--cream);
             padding: 13px 22px;
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: 'Libre Baskerville', serif;
             font-size: 1.5rem;
             cursor: pointer;
             transition: background .2s ease, transform .2s ease, border-color .2s ease;
@@ -553,7 +550,7 @@
             display: flex;
             align-items: center;
             padding: 80px 0;
-            background: #151d11;
+            background: #12180f;
         }
 
             .split-copy p {
@@ -574,7 +571,7 @@
                 content: "";
                 position: absolute;
                 inset: 0;
-                background: linear-gradient(90deg, #151d11 0%, rgba(21,29,17,0) 38%);
+                background: linear-gradient(90deg, #12180f 0%, rgba(21,29,17,0) 38%);
                 z-index: 1;
                 pointer-events: none;
             }
@@ -698,7 +695,7 @@
                 background: transparent;
                 color: var(--cream);
                 cursor: pointer;
-                font-family: "Cormorant Garamond", Georgia, serif;
+                font-family: 'Libre Baskerville', serif;
                 font-size: 1.5rem;
                 white-space: nowrap;
             }
@@ -870,7 +867,7 @@
             }
 
             .summary-item strong {
-                font-family: "Cormorant Garamond", Georgia, serif;
+                font-family: 'Libre Baskerville', serif;
                 font-size: 1.6rem;
                 font-weight: 600;
             }
@@ -896,6 +893,8 @@
             padding: 14px;
             display: none;
             z-index: 60;
+            max-height: 300px; /* enable scrolling for long lists */
+            overflow-y: auto;
         }
 
             .dropdown-panel.open {
@@ -1117,7 +1116,6 @@
                 <img src="train.png" alt="">
             </div>
             <div class="window-scenes">
-                <!-- Initial 4 slides for Turkey (default) -->
                 <div class="scene-slide active" style="background-image: url('turkey-train1.jpg')"></div>
                 <div class="scene-slide" style="background-image: url('turkey-train2.jpg')"></div>
                 <div class="scene-slide" style="background-image: url('turkey-train3.jpg')"></div>
@@ -1129,13 +1127,31 @@
 
             <div class="container hero-grid">
                 <div class="finder">
-                    <div class="finder-label">
-                        <span>From:</span>
-                        <strong id="fromCityLabel">Minsk, Belarus</strong>
-                        <i class="fa-solid fa-chevron-down" style="font-size:11px; opacity:.8;"></i>
+                    <!-- "From" dropdown -->
+                    <div class="field-wrap">
+                        <div class="finder-label js-dropdown" data-key="from" style="cursor:pointer;">
+                            <span>From:</span>
+                            <strong id="fromCityLabel">Minsk, Belarus</strong>
+                            <i class="fa-solid fa-chevron-down" style="font-size:11px; opacity:.8;"></i>
+                        </div>
+                        <div class="dropdown-panel" id="fromPanel">
+                            <div class="option-grid" style="grid-template-columns:1fr;">
+                                <button class="pill active" data-value="Minsk, Belarus">Minsk, Belarus</button>
+                                <button class="pill" data-value="Moscow, Russia">Moscow, Russia</button>
+                                <button class="pill" data-value="Warsaw, Poland">Warsaw, Poland</button>
+                                <button class="pill" data-value="Berlin, Germany">Berlin, Germany</button>
+                                <button class="pill" data-value="Vilnius, Lithuania">Vilnius, Lithuania</button>
+                                <button class="pill" data-value="Kyiv, Ukraine">Kyiv, Ukraine</button>
+                                <button class="pill" data-value="Istanbul, Turkey">Istanbul, Turkey</button>
+                                <button class="pill" data-value="Bangkok, Thailand">Bangkok, Thailand</button>
+                                <button class="pill" data-value="Rome, Italy">Rome, Italy</button>
+                                <button class="pill" data-value="Zurich, Switzerland">Zurich, Switzerland</button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="finder-card">
+                        <!-- Country -->
                         <div class="field-wrap">
                             <div class="field js-dropdown" data-key="country">
                                 <div class="label">Country</div>
@@ -1147,6 +1163,12 @@
                                     <button class="pill" data-value="Thailand">Thailand</button>
                                     <button class="pill" data-value="Italy">Italy</button>
                                     <button class="pill" data-value="Switzerland">Switzerland</button>
+                                    <button class="pill" data-value="France">France</button>
+                                    <button class="pill" data-value="Spain">Spain</button>
+                                    <button class="pill" data-value="Greece">Greece</button>
+                                    <button class="pill" data-value="Japan">Japan</button>
+                                    <button class="pill" data-value="Egypt">Egypt</button>
+                                    <button class="pill" data-value="USA">USA</button>
                                 </div>
                             </div>
                         </div>
@@ -1203,8 +1225,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Rest of the sections remain unchanged ... -->
 
         <section id="tours" class="section dark">
             <div class="container">
@@ -1290,7 +1310,7 @@
                     </div>
                 </div>
                 <div class="split-image">
-                    <img src="group.png" alt="Group hiking">
+                    <img src="enhance_zso8jnweg9b0owjsqbdm.png" alt="Group hiking">
                 </div>
             </div>
         </section>
@@ -1400,11 +1420,11 @@
                         <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                     <p>hello@thewander.com</p>
-                    <p>+1 (555) 123-4567</p>
+                    <p>+375 (33) 123-45-67</p>
                 </div>
             </div>
 
-            <div class="copyright">© 2024 The Wander. All rights reserved.</div>
+            <div class="copyright">© 2026 The Wander. All rights reserved.</div>
         </div>
     </footer>
 
@@ -1415,12 +1435,15 @@
                 <button class="modal-close" id="closeModalBtn" aria-label="Close dialog"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="summary-grid">
+                <div class="summary-item"><span>From</span><strong id="summaryFrom">Minsk, Belarus</strong></div>
                 <div class="summary-item"><span>Country</span><strong id="summaryCountry">Turkey</strong></div>
                 <div class="summary-item"><span>Departure</span><strong id="summaryDates">10 May - 18 May</strong></div>
-                <div class="summary-item"><span>Guests</span><strong id="summaryTravelers">2 Adults</strong></div>
             </div>
             <div class="summary-item" style="margin-top:12px;">
                 <span>Nights</span><strong id="summaryNights">6 - 12</strong>
+            </div>
+            <div class="summary-item" style="margin-top:12px;">
+                <span>Guests</span><strong id="summaryTravelers">2 Adults</strong>
             </div>
             <div class="modal-actions">
                 <button class="outline-btn" id="editSelectionBtn" type="button">Edit Selection</button>
@@ -1432,32 +1455,18 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // ---------- COUNTRY SCENES MAPPING ----------
+            // ---------- COUNTRY SCENES MAPPING (extended) ----------
             const countryScenes = {
-                'Turkey': [
-                    'turkey-train1.jpg',
-                    'turkey-train2.jpg',
-                    'turkey-train3.jpg',
-                    'turkey-train4.jpg'
-                ],
-                'Thailand': [
-                    'thailand-train1.jpg',
-                    'thailand-train2.jpg',
-                    'thailand-train3.jpg',
-                    'thailand-train4.jpg'
-                ],
-                'Italy': [
-                    'italy-train1.jpg',
-                    'italy-train2.jpg',
-                    'italy-train3.jpg',
-                    'italy-train4.jpg'
-                ],
-                'Switzerland': [
-                    'switherland-train1.jpg',
-                    'switherland-train2.jpg',
-                    'switherland-train3.jpg',
-                    'switherland-train4.jpg'
-                ]
+                'Turkey': ['turkey-train1.jpg', 'turkey-train2.jpg', 'turkey-train3.jpg', 'turkey-train4.jpg'],
+                'Thailand': ['thailand-train1.jpg', 'thailand-train2.jpg', 'thailand-train3.jpg', 'thailand-train4.jpg'],
+                'Italy': ['italy-train1.jpg', 'italy-train2.jpg', 'italy-train3.jpg', 'italy-train4.jpg'],
+                'Switzerland': ['switzerland-train1.jpg', 'switzerland-train2.jpg', 'switzerland-train3.jpg', 'switzerland-train4.jpg'],
+                'France': ['france-train1.jpg', 'france-train2.jpg', 'france-train3.jpg', 'france-train4.jpg'],
+                'Spain': ['spain-train1.jpg', 'spain-train2.jpg', 'spain-train3.jpg', 'spain-train4.jpg'],
+                'Greece': ['greece-train1.jpg', 'greece-train2.jpg', 'greece-train3.jpg', 'greece-train4.jpg'],
+                'Japan': ['japan-train1.jpg', 'japan-train2.jpg', 'japan-train3.jpg', 'japan-train4.jpg'],
+                'Egypt': ['egypt-train1.jpg', 'egypt-train2.jpg', 'egypt-train3.jpg', 'egypt-train4.jpg'],
+                'USA': ['usa-train1.jpg', 'usa-train2.jpg', 'usa-train3.jpg', 'usa-train4.jpg']
             };
 
             // ---------- SCENE ROTATION ----------
@@ -1476,43 +1485,36 @@
                 if (rotationInterval) clearInterval(rotationInterval);
                 rotationInterval = setInterval(() => {
                     setScene(activeSceneIndex + 1);
-                }, 3000); // change every 3 seconds
+                }, 3000);
             }
 
-            // Initial rotation start (slides already exist for Turkey)
             sceneSlides[0].classList.add('active');
             startRotation();
 
-            // ---------- UPDATE SCENES WHEN COUNTRY CHANGES ----------
             function updateScenesForCountry(country) {
                 const images = countryScenes[country];
                 if (!images || !windowScenes) return;
 
-                // Clear existing slides
                 windowScenes.innerHTML = '';
-
-                // Create new scene slides
                 images.forEach((img, index) => {
                     const slide = document.createElement('div');
                     slide.classList.add('scene-slide');
-                    if (index === 0) slide.classList.add('active'); // first one active
+                    if (index === 0) slide.classList.add('active');
                     slide.style.backgroundImage = `url('${img}')`;
                     windowScenes.appendChild(slide);
                 });
 
-                // Update the sceneSlides NodeList
-                // Re-grab the slides after DOM change
+                // Update the array reference
                 sceneSlides.length = 0;
                 const newSlides = document.querySelectorAll('.scene-slide');
                 newSlides.forEach(slide => sceneSlides.push(slide));
-
-                // Reset rotation index and restart
                 activeSceneIndex = 0;
                 startRotation();
             }
 
-            // ---------- DROPDOWN LOGIC ----------
+            // ---------- DROPDOWN LOGIC (added "from") ----------
             const panels = {
+                from: document.getElementById('fromPanel'),     // new
                 country: document.getElementById('countryPanel'),
                 dates: document.getElementById('datesPanel'),
                 nights: document.getElementById('nightsPanel'),
@@ -1520,6 +1522,7 @@
             };
 
             const labels = {
+                from: document.getElementById('fromCityLabel'), // new
                 country: document.getElementById('countryLabel'),
                 dates: document.getElementById('datesLabel'),
                 nights: document.getElementById('nightsLabel'),
@@ -1538,6 +1541,7 @@
                     e.stopPropagation();
                     const key = field.dataset.key;
                     const panel = panels[key];
+                    if (!panel) return;
                     const willOpen = !panel.classList.contains('open');
                     closeAllPanels();
                     if (willOpen) panel.classList.add('open');
@@ -1549,11 +1553,11 @@
                     e.stopPropagation();
                     const value = pill.dataset.value;
                     const parentPanel = pill.closest('.dropdown-panel');
+                    if (!parentPanel) return;
                     const key = Object.entries(panels).find(([, panel]) => panel === parentPanel)?.[0];
 
                     if (key) {
                         labels[key].textContent = value;
-                        // If country changed, update scenes
                         if (key === 'country') {
                             updateScenesForCountry(value);
                         }
@@ -1570,19 +1574,21 @@
                 if (e.key === 'Escape') closeAllPanels();
             });
 
-            // ---------- MODAL ----------
+            // ---------- MODAL (added "from") ----------
             const modal = document.getElementById('tripModal');
             const findTripBtn = document.getElementById('findTripBtn');
             const closeModalBtn = document.getElementById('closeModalBtn');
             const editSelectionBtn = document.getElementById('editSelectionBtn');
             const confirmTripBtn = document.getElementById('confirmTripBtn');
 
+            const summaryFrom = document.getElementById('summaryFrom');
             const summaryCountry = document.getElementById('summaryCountry');
             const summaryDates = document.getElementById('summaryDates');
             const summaryNights = document.getElementById('summaryNights');
             const summaryTravelers = document.getElementById('summaryTravelers');
 
             function openModal() {
+                summaryFrom.textContent = labels.from.textContent;
                 summaryCountry.textContent = labels.country.textContent;
                 summaryDates.textContent = labels.dates.textContent;
                 summaryNights.textContent = labels.nights.textContent;
@@ -1601,7 +1607,7 @@
             editSelectionBtn.addEventListener('click', closeModal);
             confirmTripBtn.addEventListener('click', () => {
                 closeModal();
-                alert(`Searching trips to ${labels.country.textContent} for ${labels.travelers.textContent}.`);
+                alert(`Searching trips from ${labels.from.textContent} to ${labels.country.textContent} for ${labels.travelers.textContent}.`);
             });
 
             modal.addEventListener('click', (e) => {
