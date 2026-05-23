@@ -12,8 +12,8 @@
 
     <style>
         :root {
-            --bg: #252F18;
-            --bg2: #1b2411;
+            --bg: #10170B;
+            --bg2: #10170B;
             --panel: rgba(14, 18, 12, .56);
             --panel-2: rgba(18, 24, 16, .76);
             --line: rgba(255,255,255,.28);
@@ -71,9 +71,9 @@
             left: 0;
             width: 100%;
             z-index: 40;
-            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,.5) 100%, );
+            background: #151A0D;
             border-bottom: 1px solid rgba(255,255,255,.18);
-            backdrop-filter: blur(8px);
+            /*            backdrop-filter: blur(8px);*/
         }
 
         .topbar-inner {
@@ -92,7 +92,7 @@
             white-space: nowrap;
             font-family: 'Libre Baskerville', serif;
             font-size: 14px;
-            color: rgba(255,255,255,.86);
+            color: #E1D9BC;
         }
 
             .nav a {
@@ -144,7 +144,7 @@
         .scene-vignette {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.35) 45%, rgba(6,8,5,.62) 100%), radial-gradient(circle at 50% 42%, rgba(255,255,255,.06), transparent 26%);
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #151A0D 100%), radial-gradient(circle at 50% 42%, rgba(255,255,255,.06), transparent 26%);
             pointer-events: none;
         }
 
@@ -205,7 +205,7 @@
             left: 0;
             width: 100%;
             height: 7%;
-            background: linear-gradient( to top, #252F18 0%, #252F18 50%, transparent 100%);
+            background: linear-gradient( to top, #151A0D 0%, transparent 100%);
             pointer-events: none;
             z-index: 2;
         }
@@ -252,10 +252,10 @@
             appearance: none;
             border: 1px solid rgba(255,255,255,.72);
             background: rgba(0,0,0,.12);
-            color: #fff7ea;
+            color: #FFFFFF;
             padding: 16px 20px;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Libre Baskerville', serif;
             font-size: clamp(1.7rem, 3vw, 1.05rem);
             line-height: 1;
             box-shadow: var(--shadow);
@@ -372,7 +372,7 @@
         }
 
             .section.dark {
-                background: #252F18;
+                background: #151A0D;
             }
 
         .title-center {
@@ -550,7 +550,7 @@
             display: flex;
             align-items: center;
             padding: 80px 0;
-            background: #252F18;
+            background: #151A0D;
         }
 
             .split-copy p {
@@ -571,7 +571,7 @@
                 content: "";
                 position: absolute;
                 inset: 0;
-                background: linear-gradient(90deg, #252F18 0%, rgba(21,29,17,0) 38%);
+                background: linear-gradient(90deg, #151A0D 0%, rgba(21,29,17,0) 38%);
                 z-index: 1;
                 pointer-events: none;
             }
@@ -641,7 +641,7 @@
         }
 
         .newsletter {
-            background: #151d11;
+            background: #151A0D;
             border-top: 1px solid rgba(255,255,255,.18);
             padding: 86px 0;
         }
@@ -733,7 +733,7 @@
         }
 
         .footer {
-            background: #252F18;
+            background: #0E1209;
             padding: 56px 0 22px;
             border-top: 1px solid rgba(255,255,255,.18);
         }
@@ -1094,7 +1094,7 @@
     <header class="topbar">
         <div class="container topbar-inner">
             <a href="#top" class="brand" aria-label="The Wander home">
-                <img src="logo_1.png" alt="The Wander Logo" class="logo-image">
+                <img src="logo_2.png" alt="The Wander Logo" class="logo-image">
             </a>
 
             <nav class="nav right" aria-label="Primary">
@@ -1109,7 +1109,7 @@
     <main id="top">
         <section class="hero" id="find-tour">
             <div class="train-bg">
-                <img src="train.png" alt="">
+                <img src="train_green.png" alt="">
             </div>
             <div class="window-scenes">
                 <div class="scene-slide active" style="background-image: url('turkey-train1.jpg')"></div>
@@ -1363,7 +1363,7 @@
                 <div class="polaroids" aria-hidden="true">
                     <img class="p1" src="Polaroid1.jpg" alt="">
                     <img class="p2" src="Polaroid2.jpg" alt="">
-                    <img class="p3" src="Polaroid3.jpg" alt="">
+                    <img class="p3" src="card_suit.png" alt="">
                 </div>
             </div>
         </section>
@@ -1373,7 +1373,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <img src="logo_1.png" alt="The Wander Logo" class="footer-logo-img">
+                    <img src="logo_2.png" alt="The Wander Logo" class="footer-logo-img">
                     <p style="margin-top:16px;">Meaningful journeys. Lasting memories.</p>
                 </div>
 
